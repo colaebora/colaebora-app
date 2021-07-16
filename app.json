@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "colaebora-app",
-    "slug": "colaebora-app",
+    "name": "Cola&Bora",
+    "slug": "colaebora",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "entryPoint": "./src/App.tsx",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -13,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
