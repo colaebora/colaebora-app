@@ -22,6 +22,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/style-prop-object': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
     camelcase: 'off',
   },
 };
