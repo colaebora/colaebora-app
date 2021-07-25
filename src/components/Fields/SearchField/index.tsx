@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import SearchSvg from '@assets/icons/search.svg';
+import { Feather } from '@expo/vector-icons';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { theme } from '@globals/styles/theme';
 import { styles } from './style';
@@ -29,7 +29,7 @@ export const SearchField: React.FC<Props> = ({
         placeholderTextColor={theme.colors.lightText}
       />
       <BorderlessButton onPress={search} style={styles.button}>
-        <SearchSvg height={24} width={24} />
+        <Feather name="search" size={18} color={theme.colors.lightText} />
       </BorderlessButton>
     </View>
   );
