@@ -54,9 +54,14 @@ export const Home: React.FC = () => {
       />
       <CrossPlatformMap
         web={{
-          defaultZoom: 8,
-          defaultCenter: { lat: -34.397, lng: 150.644 },
-          defaultOptions: { disableDefaultUI: true },
+          center: {
+            lat: 37.78825,
+            lng: -122.4324,
+          },
+          zoom: 10,
+          options: {
+            disableDefaultUI: true,
+          },
         }}
         mobile={{
           initialRegion: {
@@ -65,10 +70,6 @@ export const Home: React.FC = () => {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           },
-        }}
-        style={{
-          container: styles.mapContainer,
-          map: styles.map,
         }}
       />
       <View style={styles.bottomMenu}>

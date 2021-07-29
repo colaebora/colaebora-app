@@ -6,10 +6,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
-  mapContainer: {
-    flex: 1,
-    backgroundColor: theme.colors.gray,
-  },
   bottomMenu: {
     width: '100%',
     height: 350,
@@ -34,9 +30,5 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontSize: 14,
     fontFamily: theme.fonts.title600,
-  },
-  map: {
-    width: '100%',
-    height: '100%',
   },
 });

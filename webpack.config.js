@@ -39,9 +39,11 @@ module.exports = async function (env, argv) {
     return rule;
   });
 
-  // TODO find a cleaner solution that does not depend on the
-  // deprecated react-google-maps (write an equivalent for @react-google-maps/api?)
-  config.resolve.alias['react-native-maps'] = 'react-native-web-maps';
+  // This line's purpose is only to override react-native-web's broken
+  // implementation of MapView.
+  // Any dependency name will work as a placeholder here.
+  // TODO find a cleaner solution (write a placeholder dep?)
+  config.resolve.alias['react-native-maps'] = 'dotenv';
 
   return config;
 };

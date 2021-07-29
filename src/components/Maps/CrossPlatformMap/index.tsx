@@ -1,38 +1,20 @@
-import React, { ComponentClass, ReactNode } from 'react';
-import { ViewStyle, Platform, View } from 'react-native';
-import {
-  GoogleMap,
-  withGoogleMap,
-  WithGoogleMapProps,
-  GoogleMapProps,
-  withScriptjs,
-  WithScriptjsProps,
-} from 'react-google-maps';
+import React, { ReactNode } from 'react';
+import { Platform, View } from 'react-native';
+import { LoadScript, GoogleMap, GoogleMapProps } from '@react-google-maps/api';
 import MapView, { MapViewProps } from 'react-native-maps';
-import { GOOGLE_MAPS_WEB_API_URL } from '@globals/constants/urls';
+import { styles, webContainerStyle } from './style';
 
 interface CrossPlatformMapProps {
   web: GoogleMapProps;
   mobile: MapViewProps;
-  style: {
-    container: ViewStyle;
-    map: ViewStyle;
-  };
   children?: ReactNode;
 }
 
 export const CrossPlatformMap: React.FC<CrossPlatformMapProps> = ({
   web,
   mobile,
-  style,
   children,
 }: CrossPlatformMapProps) => {
-  const WebMap: ComponentClass<WithScriptjsProps & WithGoogleMapProps> =
-    withScriptjs(withGoogleMap(() => <GoogleMap {...web} />));
-
-  // using alias for better code readability
-  const MobileMap = MapView;
-
   const platformIsWeb = Platform.OS === 'web';
   const { GOOGLE_MAPS_WEB_API_KEY } = process.env;
 
@@ -42,19 +24,16 @@ export const CrossPlatformMap: React.FC<CrossPlatformMapProps> = ({
     );
 
   return platformIsWeb ? (
-    <WebMap
-      googleMapURL={GOOGLE_MAPS_WEB_API_URL + GOOGLE_MAPS_WEB_API_KEY}
-      containerElement={<View style={style.container} />}
-      loadingElement={<View style={style.map} />}
-      mapElement={<View style={style.map} />}
-    >
-      {children}
-    </WebMap>
-  ) : (
-    <View style={style.container}>
-      <MobileMap {...mobile} style={style.map}>
+    <LoadScript googleMapsApiKey={GOOGLE_MAPS_WEB_API_KEY as string}>
+      <GoogleMap mapContainerStyle={webContainerStyle} {...web}>
         {children}
-      </MobileMap>
+      </GoogleMap>
+    </LoadScript>
+  ) : (
+    <View style={styles.container}>
+      <MapView {...mobile} style={styles.map}>
+        {children}
+      </MapView>
     </View>
   );
 };
