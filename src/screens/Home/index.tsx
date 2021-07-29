@@ -4,8 +4,9 @@ import { ActionCard } from '@components/Layout/ActionCard';
 import { theme } from '@globals/styles/theme';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { Alert, Platform, View, Text, Image } from 'react-native';
+import { Alert, Platform, View, Text } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { CrossPlatformMap } from '@components/Maps/CrossPlatformMap';
 import { styles } from './style';
 
 export const Home: React.FC = () => {
@@ -33,9 +34,6 @@ export const Home: React.FC = () => {
     ],
   };
 
-  const mapPlaceholderImgUrl =
-    'https://www.viajandonoblog.com/wp-content/uploads/2015/06/Mapa-de-Recife-Pernambuco-Google-Maps-em-30.06.15.jpg';
-
   return (
     <View style={styles.container}>
       <FloatingButton
@@ -54,9 +52,25 @@ export const Home: React.FC = () => {
           container: { top: getStatusBarHeight() + 15, right: 15, padding: 12 },
         }}
       />
-      <View style={styles.mapContainer}>
-        <Image source={{ uri: mapPlaceholderImgUrl }} style={{ flex: 1 }} />
-      </View>
+      <CrossPlatformMap
+        web={{
+          defaultZoom: 8,
+          defaultCenter: { lat: -34.397, lng: 150.644 },
+          defaultOptions: { disableDefaultUI: true },
+        }}
+        mobile={{
+          initialRegion: {
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+        }}
+        style={{
+          container: styles.mapContainer,
+          map: styles.map,
+        }}
+      />
       <View style={styles.bottomMenu}>
         <SearchField
           value={searchText}

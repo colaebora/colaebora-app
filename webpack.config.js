@@ -39,5 +39,9 @@ module.exports = async function (env, argv) {
     return rule;
   });
 
+  // TODO find a cleaner solution that does not depend on the
+  // deprecated react-google-maps (write an equivalent for @react-google-maps/api?)
+  config.resolve.alias['react-native-maps'] = 'react-native-web-maps';
+
   return config;
 };
