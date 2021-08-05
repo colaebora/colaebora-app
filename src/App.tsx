@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from 'react';
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
 import {
@@ -9,7 +8,7 @@ import {
   Inter_600SemiBold,
 } from '@expo-google-fonts/inter';
 import AppLoading from 'expo-app-loading';
-import { Home } from '@screens/Home';
+import { Routes } from './routes';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -23,7 +22,7 @@ const App = () => {
   return (
     <>
       <StatusBar style="auto" />
-      <Home />
+      <Routes />
     </>
   );
 };

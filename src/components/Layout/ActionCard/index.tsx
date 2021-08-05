@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ViewProps } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { ActionCardData } from '@ts/ActionCardData';
 import { ProgressBar } from '@components/Layout/ProgressBar';
@@ -7,12 +7,13 @@ import { CategoryBubble } from '@components/Layout/CategoryBubble';
 import { theme } from '@globals/styles/theme';
 import { styles } from './style';
 
-interface ActionCardProps {
+interface ActionCardProps extends ViewProps {
   data: ActionCardData;
 }
 
 export const ActionCard: React.FC<ActionCardProps> = ({
   data,
+  ...rest
 }: ActionCardProps) => {
   const {
     name,
@@ -24,7 +25,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
   } = data;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...rest}>
       <View style={[styles.row, { marginBottom: 17 }]}>
         <Image source={{ uri: imgUrl }} style={styles.actionImg} />
         <View style={styles.column}>

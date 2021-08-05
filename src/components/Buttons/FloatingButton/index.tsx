@@ -1,21 +1,26 @@
 import React from 'react';
-import { ViewStyle, Text, TouchableOpacity } from 'react-native';
-import { styles } from './style';
+import {
+  TouchableOpacityProps,
+  ViewStyle,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import { styleSheet } from './style';
 
-interface FloatingButtonProps {
+interface FloatingButtonProps extends TouchableOpacityProps {
   Icon?: React.FC;
   text?: string;
-  style?: { container?: ViewStyle; text?: ViewStyle };
+  styles?: { container?: ViewStyle; text?: ViewStyle };
 }
 
 export const FloatingButton: React.FC<FloatingButtonProps> = ({
   Icon,
   text,
-  style,
+  styles,
   ...rest
 }: FloatingButtonProps) => (
-  <TouchableOpacity style={[styles.container, style?.container]} {...rest}>
+  <TouchableOpacity style={[styleSheet.container, styles?.container]} {...rest}>
     {Icon && <Icon />}
-    {text && <Text style={[styles.text, style?.text]}>{text}</Text>}
+    {text && <Text style={[styleSheet.text, styles?.text]}>{text}</Text>}
   </TouchableOpacity>
 );

@@ -8,11 +8,19 @@ export const styles = StyleSheet.create({
   },
   bottomMenu: {
     width: '100%',
-    height: 350,
+    height: '100%',
     backgroundColor: '#fff',
     flexDirection: 'column',
     padding: 22,
-    paddingTop: 42,
+    paddingTop: 15,
+  },
+  bottomMenuDrawer: {
+    alignSelf: 'center',
+    backgroundColor: theme.colors.lightGray,
+    borderRadius: 25,
+    height: 4,
+    width: 44,
+    marginBottom: 22,
   },
   actionsHeader: {
     flexDirection: 'row',

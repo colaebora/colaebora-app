@@ -1,7 +1,7 @@
 import { theme } from '@globals/styles/theme';
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const styleSheet = StyleSheet.create({
   container: {
     borderRadius: 50,
     backgroundColor: '#fff',
