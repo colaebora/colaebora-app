@@ -4,17 +4,17 @@ import { LoadScript, GoogleMap, GoogleMapProps } from '@react-google-maps/api';
 import MapView, { MapViewProps } from 'react-native-maps';
 import { styles, webContainerStyle } from './style';
 
-interface CrossPlatformMapProps {
+interface ColaMapProps {
   web: GoogleMapProps;
   mobile: MapViewProps;
   children?: ReactNode;
 }
 
-export const CrossPlatformMap: React.FC<CrossPlatformMapProps> = ({
+export const ColaMap: React.FC<ColaMapProps> = ({
   web,
   mobile,
   children,
-}: CrossPlatformMapProps) => {
+}: ColaMapProps) => {
   const platformIsWeb = Platform.OS === 'web';
   const { GOOGLE_MAPS_WEB_API_KEY } = process.env;
 

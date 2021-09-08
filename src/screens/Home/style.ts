@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'column',
     padding: 22,
-    paddingTop: 15,
   },
   bottomMenuDrawer: {
     alignSelf: 'center',
@@ -20,7 +19,7 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     height: 4,
     width: 44,
-    marginBottom: 22,
+    marginTop: 15,
   },
   actionsHeader: {
     flexDirection: 'row',

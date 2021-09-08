@@ -8,6 +8,8 @@ import {
   Inter_600SemiBold,
 } from '@expo-google-fonts/inter';
 import AppLoading from 'expo-app-loading';
+import { AuthProvider } from '@hooks/useAuth';
+import { DrawerProvider } from '@hooks/useDrawer';
 import { Routes } from './routes';
 
 const App = () => {
@@ -20,10 +22,12 @@ const App = () => {
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <>
-      <StatusBar style="auto" />
-      <Routes />
-    </>
+    <AuthProvider>
+      <DrawerProvider>
+        <StatusBar style="auto" />
+        <Routes />
+      </DrawerProvider>
+    </AuthProvider>
   );
 };
 

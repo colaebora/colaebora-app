@@ -26,6 +26,7 @@ module.exports = {
     'import/extensions': 'off',
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
     camelcase: 'off',
   },
 };

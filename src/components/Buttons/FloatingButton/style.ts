@@ -15,7 +15,7 @@ export const styleSheet = StyleSheet.create({
     alignContent: 'center',
     textAlign: 'center',
     flexDirection: 'row',
-    padding: 16,
+    padding: 12,
     position: 'absolute',
     zIndex: 10,
   },

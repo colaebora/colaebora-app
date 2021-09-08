@@ -5,14 +5,19 @@ import { ActionCardData } from '@ts/ActionCardData';
 import { ProgressBar } from '@components/Layout/ProgressBar';
 import { CategoryBubble } from '@components/Layout/CategoryBubble';
 import { theme } from '@globals/styles/theme';
+import { ScrollView } from 'react-native-gesture-handler';
 import { styles } from './style';
+import { Location } from '../Location';
 
 interface ActionCardProps extends ViewProps {
   data: ActionCardData;
+  past?: boolean;
 }
 
 export const ActionCard: React.FC<ActionCardProps> = ({
   data,
+  style,
+  past,
   ...rest
 }: ActionCardProps) => {
   const {
@@ -25,23 +30,22 @@ export const ActionCard: React.FC<ActionCardProps> = ({
   } = data;
 
   return (
-    <View style={styles.container} {...rest}>
+    <View style={[styles.container, style]} {...rest}>
       <View style={[styles.row, { marginBottom: 17 }]}>
         <Image source={{ uri: imgUrl }} style={styles.actionImg} />
         <View style={styles.column}>
           <Text style={styles.actionName}>{name}</Text>
-          <View style={styles.row}>
-            <Feather name="map-pin" width={11} height={11} />
-            <Text style={styles.distance}>{distanceInKm}km</Text>
-          </View>
+          <Location>{distanceInKm}km</Location>
         </View>
       </View>
       <View style={[styles.row, { marginBottom: 12 }]}>
-        <ProgressBar
-          value={volunteersAssigned}
-          total={volunteersNeeded}
-          style={{ marginRight: 16 }}
-        />
+        {!past ? (
+          <ProgressBar
+            value={volunteersAssigned}
+            total={volunteersNeeded}
+            style={{ marginRight: 16 }}
+          />
+        ) : null}
         <Feather
           name="users"
           color={theme.colors.primary}
@@ -49,10 +53,12 @@ export const ActionCard: React.FC<ActionCardProps> = ({
           height={16}
         />
         <Text style={styles.userCount}>
-          {volunteersAssigned}/{volunteersNeeded} pessoas ajudando
+          {!past
+            ? `${volunteersAssigned}/${volunteersNeeded} pessoas ajudando`
+            : `${volunteersAssigned} pessoas ajudaram`}
         </Text>
       </View>
-      <View style={styles.categories}>
+      <ScrollView horizontal style={styles.categories}>
         {categories.map((category, index) => (
           <CategoryBubble
             name={category.name}
@@ -64,7 +70,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
             }}
           />
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 };

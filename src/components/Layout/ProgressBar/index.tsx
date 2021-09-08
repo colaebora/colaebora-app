@@ -13,7 +13,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   total,
   style,
 }: ProgressBarProps) => {
-  const percentage = (value / total) * 100;
+  const percentage = Math.min((value / total) * 100, 100);
 
   return (
     <View style={[styles.container, style]}>

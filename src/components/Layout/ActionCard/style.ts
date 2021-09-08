@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-start',
-    height: 200,
+    minHeight: 170,
     padding: 15,
     backgroundColor: '#FFF',
     borderRadius: 10,
@@ -26,12 +26,6 @@ export const styles = StyleSheet.create({
     color: theme.colors.text,
     fontSize: 16,
     marginBottom: 4,
-  },
-  distance: {
-    fontFamily: theme.fonts.text400,
-    color: theme.colors.text,
-    fontSize: 14,
-    marginLeft: 4,
   },
   userCount: {
     fontFamily: theme.fonts.text400,
