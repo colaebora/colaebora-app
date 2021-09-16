@@ -6,7 +6,7 @@ import { styles, webContainerStyle } from './style';
 
 interface ColaMapProps {
   web: GoogleMapProps;
-  mobile: MapViewProps;
+  mobile: MapViewProps & { ref?: React.MutableRefObject<MapView> };
   children?: ReactNode;
 }
 

@@ -52,7 +52,7 @@ export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
     </LoadScript>
   ) : (
     <View style={styles.container}>
-      <MapView pointerEvents="none" {...mobile} style={styles.map}>
+      <MapView liteMode pointerEvents="none" {...mobile} style={styles.map}>
         <View style={styles.card}>
           <Location>{text}</Location>
         </View>

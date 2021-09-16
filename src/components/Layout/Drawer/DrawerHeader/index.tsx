@@ -1,14 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useAuth } from '@hooks/useAuth';
 
 import { Image, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { styles } from './style';
 
 export const DrawerHeader: FC = () => {
-  const { user, logout } = useAuth();
+  const { user, isLoggedIn, logout } = useAuth();
+  const navigation = useNavigation();
 
-  return user ? (
+  const handleEditProfileClick = useCallback(
+    () => navigation.navigate('EditProfile'),
+    [navigation]
+  );
+
+  return isLoggedIn && user ? (
     <View style={styles.container}>
       <Image
         source={{ uri: user.photo }}
@@ -17,7 +24,9 @@ export const DrawerHeader: FC = () => {
       />
       <View style={styles.textsContainer}>
         <Text style={styles.username}>{user.name}</Text>
-        <Text style={styles.editProfile}>Editar perfil</Text>
+        <Text style={styles.editProfile} onPress={handleEditProfileClick}>
+          Editar perfil
+        </Text>
       </View>
     </View>
   ) : (

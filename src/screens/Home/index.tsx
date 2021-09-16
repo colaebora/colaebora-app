@@ -3,7 +3,7 @@ import { SearchField } from '@components/Fields/SearchField';
 import { ActionCard } from '@components/Layout/ActionCard';
 import { theme } from '@globals/styles/theme';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Alert, Platform, View, Text } from 'react-native';
 import { ColaMap } from '@components/Maps/ColaMap';
 import { useNavigation } from '@react-navigation/native';
@@ -13,6 +13,9 @@ import { BlankSpace } from '@components/Layout/BlankSpace';
 import { sampleActions } from '@globals/constants/temp';
 import { useDrawer } from '@hooks/useDrawer';
 import { Drawer } from '@components/Layout/Drawer';
+import * as Location from 'expo-location';
+import { RECIFE_LAT_LNG } from '@constants/locations';
+import MapView, { Region } from 'react-native-maps';
 import { styles } from './style';
 
 export const Home: React.FC = () => {
@@ -29,12 +32,28 @@ export const Home: React.FC = () => {
   };
 
   const bottomSheetRef = useRef<BottomSheet>(null);
-
   const retractModal = () => bottomSheetRef.current?.snapTo(0);
-
   const openAction = () => navigation.navigate('Action');
-
   const handleDrawerButtonPress = () => drawer.open();
+  const mapRef = useRef<MapView>({} as MapView);
+
+  const handleLocateButtonPress = useCallback(async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Não foi possível obter sua localização.');
+      return;
+    }
+    const location = await Location.getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Lowest,
+    });
+    const newLatLng: Region = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    };
+    mapRef.current?.animateToRegion(newLatLng);
+  }, []);
 
   return (
     <>
@@ -54,6 +73,7 @@ export const Home: React.FC = () => {
           Icon={() => (
             <Ionicons name="locate" size={24} color={theme.colors.primary} />
           )}
+          onPress={handleLocateButtonPress}
         />
         <ColaMap
           web={{
@@ -68,11 +88,11 @@ export const Home: React.FC = () => {
           }}
           mobile={{
             initialRegion: {
-              latitude: 37.78825,
-              longitude: -122.4324,
+              ...RECIFE_LAT_LNG,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             },
+            ref: mapRef,
             onTouchStart: retractModal,
           }}
         />
