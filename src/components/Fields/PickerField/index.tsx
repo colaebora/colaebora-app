@@ -24,6 +24,7 @@ type Props = {
   last?: boolean;
   multiple?: boolean;
   placeholder?: string;
+  error?: string;
 };
 
 export const PickerField: FC<Props> = ({
@@ -36,6 +37,7 @@ export const PickerField: FC<Props> = ({
   value,
   multiple,
   placeholder,
+  error,
 }) => {
   const navigation = useNavigation();
 
@@ -68,7 +70,7 @@ export const PickerField: FC<Props> = ({
       style={[
         styleSheet.container,
         styles?.container,
-        !last ? { marginBottom: 20 } : {},
+        !last && !error ? { marginBottom: 12 } : {},
       ]}
     >
       {label && (
@@ -76,12 +78,24 @@ export const PickerField: FC<Props> = ({
           {label}
           {required && (
             <Text style={[styleSheet.requiredMark, styles?.requiredMark]}>
+              {' '}
               *
             </Text>
           )}
         </Text>
       )}
-      <TouchableWithoutFeedback style={styleSheet?.input} onPress={openPicker}>
+      <TouchableWithoutFeedback
+        style={[
+          styleSheet?.input,
+          {
+            borderBottomColor: error
+              ? theme.colors.failureRed
+              : theme.colors.lightGray,
+          },
+          styles?.input,
+        ]}
+        onPress={openPicker}
+      >
         {!value || value.length === 0 ? (
           <Text style={styleSheet.placeholderText}>{placeholder}</Text>
         ) : (
@@ -93,6 +107,7 @@ export const PickerField: FC<Props> = ({
           color={theme.colors.primary}
         />
       </TouchableWithoutFeedback>
+      {error && <Text style={styleSheet.error}>{error}</Text>}
     </View>
   );
 };

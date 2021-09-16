@@ -1,3 +1,4 @@
+import { theme } from '@globals/styles/theme';
 import React, { FC } from 'react';
 import {
   View,
@@ -19,6 +20,7 @@ type Props = TextInputProps & {
   label?: string;
   required?: boolean;
   last?: boolean;
+  error?: string;
 };
 
 export const TextField: FC<Props> = ({
@@ -26,23 +28,39 @@ export const TextField: FC<Props> = ({
   label,
   required,
   last,
+  error,
   ...props
 }) => (
   <View
     style={[
       styleSheet.container,
       styles?.container,
-      !last ? { marginBottom: 20 } : {},
+      !last && !error ? { marginBottom: 12 } : {},
     ]}
   >
     {label && (
       <Text style={[styleSheet.label, styles?.label]}>
         {label}
         {required && (
-          <Text style={[styleSheet.requiredMark, styles?.requiredMark]}>*</Text>
+          <Text style={[styleSheet.requiredMark, styles?.requiredMark]}>
+            {' '}
+            *
+          </Text>
         )}
       </Text>
     )}
-    <TextInput {...props} style={[styleSheet.input, styles?.input]} />
+    <TextInput
+      {...props}
+      style={[
+        styleSheet.input,
+        {
+          borderBottomColor: error
+            ? theme.colors.failureRed
+            : theme.colors.lightGray,
+        },
+        styles?.input,
+      ]}
+    />
+    {error && <Text style={styleSheet.error}>{error}</Text>}
   </View>
 );

@@ -11,15 +11,21 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   requiredMark: {
-    fontFamily: theme.fonts.title600,
+    fontFamily: theme.fonts.text500,
     fontSize: 18,
     marginBottom: 10,
     color: theme.colors.failureRed,
+    opacity: 0.7,
   },
   input: {
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.lightGray,
     fontSize: 14,
+    marginBottom: 5,
+  },
+  error: {
+    color: theme.colors.failureRed,
+    opacity: 0.9,
+    marginBottom: 5,
   },
 });

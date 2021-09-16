@@ -3,5 +3,4 @@ export enum Gender {
   female = 'female',
   nonBinary = 'nonBinary',
   other = 'other',
-  notSpecified = 'notSpecified',
 }

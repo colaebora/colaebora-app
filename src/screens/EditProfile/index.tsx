@@ -16,6 +16,7 @@ import { PickerField } from '@components/Fields/PickerField';
 import { GENDER_OPTIONS } from '@constants/genders';
 import { TelephoneInput } from '@components/Fields/TelephoneField';
 import { INTEREST_OPTIONS } from '@constants/interests';
+import * as Yup from 'yup';
 import { styles } from './style';
 import { Gender } from '../../@types/enums/Gender';
 
@@ -35,15 +36,30 @@ export const EditProfile: React.FC = () => {
 
   const initialValues: EditProfileFormSchema = useMemo(
     () => ({
-      bio: '',
+      bio: user?.bio ?? '',
       location: '',
-      interests: [],
-      email: '',
-      phone: '',
-      gender: null,
+      interests: user?.interests ?? [],
+      email: user?.email ?? '',
+      phone: user?.phone ?? '',
+      gender: user?.gender ?? null,
     }),
-    []
+    [user]
   );
+
+  const editProfileSchema = Yup.object().shape({
+    bio: Yup.string().optional(),
+    location: Yup.string().required('Insira sua localização!'),
+    email: Yup.string()
+      .email('Insira um e-mail válido!')
+      .required('Insira seu e-mail!'),
+    phone: Yup.string()
+      .length(11, 'Insira um telefone válido!')
+      .required('Insira seu telefone!'),
+    gender: Yup.string().required('Insira seu gênero!').nullable(true),
+    interests: Yup.array()
+      .min(1, 'Selecione ao menos um interesse!')
+      .required('Selecione ao menos um interesse!'),
+  });
 
   const handleFinish = useCallback((data: EditProfileFormSchema) => {
     Alert.alert(JSON.stringify(data, null, 2));
@@ -56,8 +72,20 @@ export const EditProfile: React.FC = () => {
   }
 
   return (
-    <Formik formik onSubmit={handleFinish} initialValues={initialValues}>
-      {({ handleSubmit, values, handleBlur, handleChange, setFieldValue }) => (
+    <Formik
+      formik
+      onSubmit={handleFinish}
+      validationSchema={editProfileSchema}
+      initialValues={initialValues}
+    >
+      {({
+        handleSubmit,
+        values,
+        handleBlur,
+        handleChange,
+        setFieldValue,
+        errors,
+      }) => (
         <KeyboardAvoidingView
           style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}
           behavior="padding"
@@ -104,13 +132,16 @@ export const EditProfile: React.FC = () => {
                 value={values.bio}
                 onBlur={handleBlur('bio')}
                 onChangeText={handleChange('bio')}
+                error={errors.bio}
               />
               <TextField
                 label="Localização"
-                placeholder="Como vai ser esse campo?"
+                placeholder="Como vai ser esse campo????"
                 value={values.location}
                 onBlur={handleBlur('location')}
                 onChangeText={handleChange('location')}
+                required
+                error={errors.location}
               />
               <PickerField
                 label="Interesses"
@@ -118,6 +149,8 @@ export const EditProfile: React.FC = () => {
                 placeholder="Selecione seus interesses"
                 value={values.interests}
                 onChange={(v: string[]) => setFieldValue('interests', v)}
+                error={errors.interests as string}
+                required
                 multiple
               />
               <TextField
@@ -127,16 +160,20 @@ export const EditProfile: React.FC = () => {
                 value={values.email}
                 onBlur={handleBlur('email')}
                 onChangeText={handleChange('email')}
+                error={errors.email}
+                required
               />
               <TelephoneInput
                 label="Telefone"
                 keyboardType="phone-pad"
                 textContentType="telephoneNumber"
-                placeholder="Fazer TelephoneInput"
+                placeholder="Insira seu telefone"
                 maxLength={16}
                 value={values.phone}
                 onBlur={handleBlur('phone')}
                 onChange={handleChange('phone')}
+                error={errors.phone}
+                required
               />
               <PickerField
                 label="Gênero"
@@ -144,6 +181,8 @@ export const EditProfile: React.FC = () => {
                 placeholder="Selecione seu gênero"
                 value={values.gender}
                 onChange={handleChange('gender')}
+                error={errors.gender}
+                required
               />
             </View>
           </ScrollView>

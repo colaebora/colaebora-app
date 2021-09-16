@@ -1,4 +1,6 @@
-import { User } from '@ts/User';
+import { User } from '@ts/entities/User';
+import { Gender } from '@ts/enums/Gender';
+import { Interest } from '@ts/enums/Interest';
 import React, {
   createContext,
   FC,
@@ -42,6 +44,11 @@ export const AuthProvider: FC = ({ children }) => {
       id: 1,
       name: 'José Henrique Leão',
       photo: 'https://github.com/jhleao.png',
+      email: 'jhleao99@gmail.com',
+      gender: Gender.male,
+      interests: [Interest.animals, Interest.ecology],
+      phone: '81940028922',
+      bio: 'o lobo uiva e o urso panda',
     };
     setUser(mockUser);
     return true;
