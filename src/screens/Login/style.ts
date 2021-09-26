@@ -27,22 +27,6 @@ export const styles = StyleSheet.create({
       height: 4,
     },
   },
-  googleLogin: {
-    backgroundColor: theme.colors.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-    borderRadius: 15,
-    height: 56,
-    marginBottom: 18,
-  },
-  googleLoginText: {
-    fontFamily: theme.fonts.title600,
-    color: 'white',
-    fontSize: 16,
-    marginLeft: 8,
-  },
   skipLogin: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -2,7 +2,7 @@ import { FloatingButton } from '@components/Buttons/FloatingButton';
 import { SearchField } from '@components/Fields/SearchField';
 import { ActionCard } from '@components/Layout/ActionCard';
 import { theme } from '@globals/styles/theme';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useRef, useState } from 'react';
 import { Alert, Platform, View, Text } from 'react-native';
 import { ColaMap } from '@components/Maps/ColaMap';
@@ -55,6 +55,11 @@ export const Home: React.FC = () => {
     mapRef.current?.animateToRegion(newLatLng);
   }, []);
 
+  const handleCreateActionButtonPress = useCallback(
+    () => navigation.navigate('ActionForm'),
+    [navigation]
+  );
+
   return (
     <>
       <View style={styles.container}>
@@ -67,6 +72,14 @@ export const Home: React.FC = () => {
             />
           )}
           onPress={handleDrawerButtonPress}
+        />
+        <FloatingButton
+          right
+          Icon={() => <Feather name="plus" size={24} color="#fff" />}
+          onPress={handleCreateActionButtonPress}
+          styles={{
+            container: { backgroundColor: theme.colors.primary, right: 75 },
+          }}
         />
         <FloatingButton
           right

@@ -1,3 +1,4 @@
+import { ActionFormProps } from './ActionForm';
 import { PickerScreenProps } from './Picker';
 
 export type AppRoutesParamList = {
@@ -5,4 +6,5 @@ export type AppRoutesParamList = {
   Picker: PickerScreenProps;
   Action: undefined;
   EditProfile: undefined;
+  ActionForm: ActionFormProps;
 };

@@ -6,6 +6,7 @@ import { Action } from '@screens/Action';
 import { EditProfile } from '@screens/EditProfile';
 import { Picker } from '@screens/Picker';
 import { AppRoutesParamList } from '@ts/routes/AppRoutes';
+import { ActionForm } from '@screens/CreateAction';
 
 const { Navigator, Screen } = createStackNavigator<AppRoutesParamList>();
 
@@ -19,6 +20,7 @@ export const AppRoutes: React.FC = () => (
       <Screen name="Home" component={Home} />
       <Screen name="Action" component={Action} />
       <Screen name="EditProfile" component={EditProfile} />
+      <Screen name="ActionForm" component={ActionForm} />
       <Screen name="Picker" component={Picker} />
     </Navigator>
   </>

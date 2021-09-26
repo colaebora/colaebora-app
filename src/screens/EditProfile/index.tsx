@@ -17,17 +17,8 @@ import { GENDER_OPTIONS } from '@constants/genders';
 import { TelephoneInput } from '@components/Fields/TelephoneField';
 import { INTEREST_OPTIONS } from '@constants/interests';
 import * as Yup from 'yup';
+import { EditProfileFormSchema } from '@ts/forms/EditProfileFormSchema';
 import { styles } from './style';
-import { Gender } from '../../@types/enums/Gender';
-
-type EditProfileFormSchema = {
-  bio: string;
-  location: string;
-  interests: string[];
-  email: string;
-  phone: string;
-  gender: Gender | null;
-};
 
 export const EditProfile: React.FC = () => {
   const navigation = useNavigation();
@@ -148,7 +139,7 @@ export const EditProfile: React.FC = () => {
                 options={INTEREST_OPTIONS}
                 placeholder="Selecione seus interesses"
                 value={values.interests}
-                onChange={(v: string[]) => setFieldValue('interests', v)}
+                onChange={(v: string[]) => setFieldValue('interests', v, false)}
                 error={errors.interests as string}
                 required
                 multiple
