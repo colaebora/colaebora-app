@@ -8,7 +8,7 @@ import { ProfilePicture } from '@components/Layout/ProfilePicture';
 import { useNavigation } from '@react-navigation/native';
 import { Location } from '@components/Layout/Location';
 import { globalStyles } from '@globals/styles/global';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import { CategoryBubble } from '@components/Layout/CategoryBubble';
 import { Divider } from '@components/Layout/Divider';
 import { sampleActions } from '@globals/constants/temp';

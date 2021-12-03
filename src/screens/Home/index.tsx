@@ -121,6 +121,7 @@ export const Home: React.FC = () => {
               set={setSearchText}
               callback={testAlert}
             />
+
             <View style={styles.actionsHeader}>
               <Text style={styles.actionsTitle}>Ações nessa região</Text>
               <Text style={styles.actionsLink}>Ver todas</Text>

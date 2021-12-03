@@ -1,4 +1,4 @@
-import { LatLng } from '@ts/LatLng';
+import { LatLng } from '@ts/entities/LatLng';
 
 export const RECIFE_LAT_LNG: LatLng = {
   latitude: -8.05,

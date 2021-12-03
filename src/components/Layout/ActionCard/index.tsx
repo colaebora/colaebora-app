@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, ViewProps } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { ActionCardData } from '@ts/ActionCardData';
+import { ActionCardData } from '@ts/Components/ActionCardData';
 import { ProgressBar } from '@components/Layout/ProgressBar';
 import { CategoryBubble } from '@components/Layout/CategoryBubble';
 import { theme } from '@globals/styles/theme';

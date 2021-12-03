@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-start',
-    minHeight: 170,
+    minHeight: 180,
     padding: 15,
     backgroundColor: '#FFF',
     borderRadius: 10,
