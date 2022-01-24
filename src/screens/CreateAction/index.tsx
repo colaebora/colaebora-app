@@ -92,7 +92,6 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
 
   const handleFinish = useCallback((data: ActionFormSchema) => {
     Alert.alert(JSON.stringify(data, null, 2));
-    console.log({ data });
   }, []);
 
   return (

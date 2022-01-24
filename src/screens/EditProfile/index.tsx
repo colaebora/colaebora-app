@@ -56,7 +56,6 @@ export const EditProfile: React.FC = () => {
 
   const handleFinish = useCallback((data: EditProfileFormSchema) => {
     Alert.alert(JSON.stringify(data, null, 2));
-    console.log({ data });
   }, []);
 
   if (!user) {

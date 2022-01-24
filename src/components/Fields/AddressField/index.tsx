@@ -49,8 +49,6 @@ export const AddressField: FC<Props> = ({
     if (wizardOpen) setWizardOpen(false);
   }, [wizardOpen]);
 
-  console.log({ value });
-
   return (
     <View
       style={[
