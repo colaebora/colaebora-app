@@ -10,6 +10,7 @@ import {
 import AppLoading from 'expo-app-loading';
 import { AuthProvider } from '@hooks/useAuth';
 import { DrawerProvider } from '@hooks/useDrawer';
+import { AddressWizardProvider } from '@hooks/useAddressWIzard';
 import { Routes } from './routes';
 
 const App = () => {
@@ -24,8 +25,10 @@ const App = () => {
   return (
     <AuthProvider>
       <DrawerProvider>
-        <StatusBar style="auto" />
-        <Routes />
+        <AddressWizardProvider>
+          <StatusBar style="auto" />
+          <Routes />
+        </AddressWizardProvider>
       </DrawerProvider>
     </AuthProvider>
   );

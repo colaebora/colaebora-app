@@ -29,6 +29,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-underscore-dangle': 'off',
     'react/no-unused-prop-types': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
     camelcase: 'off',
   },
 };

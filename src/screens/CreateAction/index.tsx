@@ -21,6 +21,7 @@ import { ActionBannerPicker } from '@components/Fields/ActionBannerPicker';
 import { PrimaryButton } from '@components/Buttons/PrimaryButton';
 import { ActionDatePicker } from '@components/Fields/ActionDatePicker';
 import { ActionDatetime } from '@ts/entities/Action';
+import { AddressField } from '@components/Fields/AddressField';
 import { styles } from './style';
 
 type Props = StackScreenProps<AppRoutesParamList, 'ActionForm'>;
@@ -161,15 +162,13 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                 required
                 multiple
               />
-              {/* TODO */}
-              <TextField
-                label="Local"
-                placeholder="TODO"
-                value=""
-                onBlur={handleBlur('location')}
-                onChangeText={handleChange('location')}
-                error={errors.location}
+              <AddressField
+                label="Localização"
+                placeholder="Insira a localização da ação"
+                value={values.location}
+                onChange={(a) => setFieldValue('location', a, false)}
                 required
+                error={errors.location}
               />
               <ActionDatePicker
                 label="Dia da ação"

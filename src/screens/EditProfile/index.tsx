@@ -18,6 +18,8 @@ import { TelephoneInput } from '@components/Fields/TelephoneField';
 import { INTEREST_OPTIONS } from '@constants/interests';
 import * as Yup from 'yup';
 import { EditProfileFormSchema } from '@ts/forms/EditProfileFormSchema';
+import { AddressField } from '@components/Fields/AddressField';
+import { EMPTY_ADDRESS } from '@hooks/useAddressWIzard';
 import { styles } from './style';
 
 export const EditProfile: React.FC = () => {
@@ -28,7 +30,7 @@ export const EditProfile: React.FC = () => {
   const initialValues: EditProfileFormSchema = useMemo(
     () => ({
       bio: user?.bio ?? '',
-      location: '',
+      address: user?.address ?? EMPTY_ADDRESS,
       interests: user?.interests ?? [],
       email: user?.email ?? '',
       phone: user?.phone ?? '',
@@ -39,7 +41,7 @@ export const EditProfile: React.FC = () => {
 
   const editProfileSchema = Yup.object().shape({
     bio: Yup.string().optional(),
-    location: Yup.string().required('Insira sua localização!'),
+    address: Yup.object().required('Insira sua localização!'),
     email: Yup.string()
       .email('Insira um e-mail válido!')
       .required('Insira seu e-mail!'),
@@ -125,14 +127,13 @@ export const EditProfile: React.FC = () => {
                 onChangeText={handleChange('bio')}
                 error={errors.bio}
               />
-              <TextField
+              <AddressField
                 label="Localização"
-                placeholder="Como vai ser esse campo????"
-                value={values.location}
-                onBlur={handleBlur('location')}
-                onChangeText={handleChange('location')}
+                placeholder="Insira sua localização..."
+                value={values.address}
+                onChange={(a) => setFieldValue('address', a, false)}
                 required
-                error={errors.location}
+                error={errors.address}
               />
               <PickerField
                 label="Interesses"

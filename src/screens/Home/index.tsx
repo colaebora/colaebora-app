@@ -16,6 +16,9 @@ import { Drawer } from '@components/Layout/Drawer';
 import * as Location from 'expo-location';
 import { RECIFE_LAT_LNG } from '@constants/locations';
 import MapView, { Region } from 'react-native-maps';
+import { Address } from '@ts/entities/Address';
+import { AddressField } from '@components/Fields/AddressField';
+import { EMPTY_ADDRESS } from '@hooks/useAddressWIzard';
 import { styles } from './style';
 
 export const Home: React.FC = () => {
@@ -59,6 +62,9 @@ export const Home: React.FC = () => {
     () => navigation.navigate('ActionForm'),
     [navigation]
   );
+
+  const [stub_address_state, setStub_address_state] =
+    useState<Address>(EMPTY_ADDRESS);
 
   return (
     <>

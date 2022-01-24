@@ -1,21 +1,25 @@
 import React, { ReactNode } from 'react';
-import { Platform, View } from 'react-native';
-import { LoadScript, GoogleMap, GoogleMapProps } from '@react-google-maps/api';
+import { Platform, View, ViewStyle } from 'react-native';
+import { LoadScript, GoogleMap } from '@react-google-maps/api';
 import MapView, { MapViewProps } from 'react-native-maps';
-import { LatLng } from '@ts/LatLng';
 import { Location } from '@components/Layout/Location';
+import { ShortLatLng } from '@ts/entities/LatLng';
 import { styles, webContainerStyle } from './style';
 
 interface ColaMapBannerProps {
-  latLng: LatLng;
+  latLng: ShortLatLng;
   text?: string;
+  mobile?: MapViewProps & { ref?: React.MutableRefObject<MapView> };
   children?: ReactNode;
+  mobileStyle?: ViewStyle;
 }
 
 export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
   latLng,
   text,
   children,
+  mobileStyle,
+  mobile = {},
 }: ColaMapBannerProps) => {
   const platformIsWeb = Platform.OS === 'web';
   const { GOOGLE_MAPS_WEB_API_KEY } = process.env;
@@ -32,13 +36,14 @@ export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
       disableDefaultUI: true,
     },
   };
-  const mobile = {
+  const mobileProps = {
     initialRegion: {
       latitude: latLng.lat,
       longitude: latLng.lng,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     },
+    ...mobile,
   };
 
   // TODO add web support
@@ -52,7 +57,12 @@ export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
     </LoadScript>
   ) : (
     <View style={styles.container}>
-      <MapView liteMode pointerEvents="none" {...mobile} style={styles.map}>
+      <MapView
+        liteMode
+        pointerEvents="none"
+        {...mobileProps}
+        style={[styles.map, mobileStyle]}
+      >
         <View style={styles.card}>
           <Location>{text}</Location>
         </View>
