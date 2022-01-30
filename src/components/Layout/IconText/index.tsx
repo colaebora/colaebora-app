@@ -5,16 +5,18 @@ import { styles } from './styles';
 
 type Props = PropsWithChildren<ViewProps> & {
   textStyle?: TextStyle;
+  icon?: React.ReactNode;
 };
 
-export const Location: FC<Props> = ({
+export const IconText: FC<Props> = ({
   children,
   style,
   textStyle,
+  icon,
   ...rest
 }: Props) => (
   <View style={[styles.row, style]} {...rest}>
-    <Feather name="map-pin" size={11} />
+    {icon || <Feather name="map-pin" size={11} />}
     <Text style={[styles.distance, textStyle]}>{children}</Text>
   </View>
 );

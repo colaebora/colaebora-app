@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Platform, View, ViewStyle } from 'react-native';
 import { LoadScript, GoogleMap } from '@react-google-maps/api';
 import MapView, { MapViewProps } from 'react-native-maps';
-import { Location } from '@components/Layout/Location';
+import { IconText } from '@components/Layout/IconText';
 import { ShortLatLng } from '@ts/entities/LatLng';
 import { styles, webContainerStyle } from './style';
 
@@ -64,7 +64,7 @@ export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
         style={[styles.map, mobileStyle]}
       >
         <View style={styles.card}>
-          <Location>{text}</Location>
+          <IconText>{text}</IconText>
         </View>
         {children}
       </MapView>

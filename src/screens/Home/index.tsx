@@ -16,6 +16,8 @@ import { Drawer } from '@components/Layout/Drawer';
 import * as Location from 'expo-location';
 import { RECIFE_LAT_LNG } from '@constants/locations';
 import MapView, { Region } from 'react-native-maps';
+import { Action } from '@ts/entities/Action';
+import { ActionPeek } from '@components/ActionPeek';
 import { styles } from './style';
 
 export const Home: React.FC = () => {
@@ -59,6 +61,24 @@ export const Home: React.FC = () => {
     () => navigation.navigate('ActionForm'),
     [navigation]
   );
+
+  const [selectedAction, setSelectedAction] = useState<Action | null>(null);
+  const [actionPeekOpen, setActionPeekOpen] = useState(false);
+
+  const openActionPeek = useCallback((action: Action) => {
+    setSelectedAction(action);
+    setActionPeekOpen(true);
+  }, []);
+
+  const closeActionPeek = useCallback(() => {
+    setActionPeekOpen(false);
+  }, []);
+
+  const openActionDetails = useCallback(() => {
+    // TODO
+    closeActionPeek();
+    navigation.navigate('Action');
+  }, [navigation, closeActionPeek]);
 
   return (
     <>
@@ -111,7 +131,7 @@ export const Home: React.FC = () => {
           markers={sampleActions.map((a) => ({
             key: a.id,
             latLng: a.location.latLng,
-            onClick: testAlert,
+            onClick: () => openActionPeek(a),
           }))}
         />
         <ColaBottomSheet
@@ -143,6 +163,12 @@ export const Home: React.FC = () => {
           </View>
         </ColaBottomSheet>
       </View>
+      <ActionPeek
+        isOpen={actionPeekOpen}
+        onClose={closeActionPeek}
+        data={selectedAction}
+        onDetailsClick={openActionDetails}
+      />
       <Drawer />
     </>
   );

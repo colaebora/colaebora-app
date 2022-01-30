@@ -60,7 +60,7 @@ export const ColaMap: React.FC<ColaMapProps> = ({
                 latitude: e.latLng.latitude,
                 longitude: e.latLng.longitude,
               }}
-              onPress={e.onClick ?? NO_OP}
+              onPress={e.onClick ? e.onClick : NO_OP}
               style={styles.markerContainer}
             >
               <FontAwesome5

@@ -6,7 +6,7 @@ import { theme } from '@globals/styles/theme';
 
 import { ProfilePicture } from '@components/Layout/ProfilePicture';
 import { useNavigation } from '@react-navigation/native';
-import { Location } from '@components/Layout/Location';
+import { IconText } from '@components/Layout/IconText';
 import { globalStyles } from '@globals/styles/global';
 import { ScrollView } from 'react-native-gesture-handler';
 import { CategoryBubble } from '@components/Layout/CategoryBubble';
@@ -49,7 +49,7 @@ export const Action: React.FC = () => {
         />
         <Text style={styles.name}>Saber Viver</Text>
         <View style={styles.row}>
-          <Location>Recife - PE</Location>
+          <IconText>Recife - PE</IconText>
           <View style={styles.row}>
             <AntDesign name="star" color="#E8EB36" size={11} />
             <Text style={{ marginLeft: 4 }}>4.3</Text>

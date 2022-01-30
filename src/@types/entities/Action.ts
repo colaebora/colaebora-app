@@ -1,6 +1,7 @@
 import { ActionFrequency } from '@ts/enums/ActionFrequency';
 import { Interest } from '@ts/enums/Interest';
 import { Address } from './Address';
+import { Organization } from './Organization';
 
 export type ActionDatetime = {
   date: string;
@@ -18,4 +19,5 @@ export type Action = {
   volunteersAssignedCount: number;
   volunteersNeededCount: number;
   distanceInMeters: number;
+  organization: Partial<Organization>;
 };

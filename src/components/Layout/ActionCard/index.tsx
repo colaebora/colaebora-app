@@ -8,7 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Action } from '@ts/entities/Action';
 import { getInterestDisplayName } from '@globals/utils/getInterestDisplayName';
 import { styles } from './style';
-import { Location } from '../Location';
+import { IconText } from '../IconText';
 
 interface ActionCardProps extends ViewProps {
   data: Action;
@@ -36,7 +36,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
         <Image source={{ uri: imgUrl }} style={styles.actionImg} />
         <View style={styles.column}>
           <Text style={styles.actionName}>{name}</Text>
-          <Location>{distanceInMeters / 1000}km</Location>
+          <IconText>{distanceInMeters / 1000}km</IconText>
         </View>
       </View>
       <View style={[styles.row, { marginBottom: 12 }]}>

@@ -12,7 +12,8 @@ export const sampleActions: Action[] = [
     volunteersAssignedCount: 15,
     volunteersNeededCount: 5,
     distanceInMeters: 2000,
-    about: 'Descrição descrição descrição',
+    about:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan nunc ut sagittis pellentesque. Sed faucibus id metus sed posuere. In est dolor, accumsan sit amet sapien vel, pellentesque lobortis ligula. Nullam consequat mauris eu mauris suscipit suscipit. Phasellus in arcu vitae leo finibus venenatis. ',
     date: {
       date: '2022-02-14T15:00:00.000Z',
       frequency: ActionFrequency.once,
@@ -24,6 +25,11 @@ export const sampleActions: Action[] = [
       },
       number: '2142',
       street: 'Rua do Apolo',
+      city: 'Recife',
+      state: 'PE',
+    },
+    organization: {
+      name: 'Saber Viver',
     },
   },
   {
@@ -47,6 +53,11 @@ export const sampleActions: Action[] = [
       },
       number: '2142',
       street: 'Rua do Apolo',
+      city: 'Recife',
+      state: 'PE',
+    },
+    organization: {
+      name: 'Saber Viver',
     },
   },
   {
@@ -69,6 +80,11 @@ export const sampleActions: Action[] = [
       },
       number: '2142',
       street: 'Rua do Apolo',
+      city: 'Recife',
+      state: 'PE',
+    },
+    organization: {
+      name: 'Saber Viver',
     },
   },
 ];
