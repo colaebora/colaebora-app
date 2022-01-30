@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
-import { Platform, View, ViewStyle } from 'react-native';
+import { Platform, Text, View, ViewStyle } from 'react-native';
 import { LoadScript, GoogleMap } from '@react-google-maps/api';
 import MapView, { MapViewProps } from 'react-native-maps';
 import { IconText } from '@components/Layout/IconText';
 import { ShortLatLng } from '@ts/entities/LatLng';
+import { Feather } from '@expo/vector-icons';
 import { styles, webContainerStyle } from './style';
 
 interface ColaMapBannerProps {
@@ -57,15 +58,18 @@ export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
     </LoadScript>
   ) : (
     <View style={styles.container}>
+      <View style={styles.card}>
+        <View style={styles.row}>
+          <Feather name="map-pin" size={11} />
+          <Text style={styles.cardText}>{text}</Text>
+        </View>
+      </View>
       <MapView
         liteMode
         pointerEvents="none"
         {...mobileProps}
         style={[styles.map, mobileStyle]}
       >
-        <View style={styles.card}>
-          <IconText>{text}</IconText>
-        </View>
         {children}
       </MapView>
     </View>

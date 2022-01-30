@@ -84,14 +84,12 @@ export const Action: React.FC = () => {
         <Text style={globalStyles.title}>Ações desenvolvidas</Text>
         <View>
           {sampleActions.map((item) => (
-            <>
-              <ActionCard
-                style={{ marginVertical: 7 }}
-                past
-                data={item}
-                key={item.id}
-              />
-            </>
+            <ActionCard
+              style={{ marginVertical: 7 }}
+              past
+              data={item}
+              key={item.id}
+            />
           ))}
         </View>
       </View>
