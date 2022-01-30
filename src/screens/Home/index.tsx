@@ -16,9 +16,8 @@ import { Drawer } from '@components/Layout/Drawer';
 import * as Location from 'expo-location';
 import { RECIFE_LAT_LNG } from '@constants/locations';
 import MapView, { Region } from 'react-native-maps';
-import { Address } from '@ts/entities/Address';
-import { AddressField } from '@components/Fields/AddressField';
-import { EMPTY_ADDRESS } from '@hooks/useAddressWIzard';
+import { Action } from '@ts/entities/Action';
+import { ActionPeek } from '@components/ActionPeek';
 import { styles } from './style';
 
 export const Home: React.FC = () => {
@@ -63,8 +62,23 @@ export const Home: React.FC = () => {
     [navigation]
   );
 
-  const [stub_address_state, setStub_address_state] =
-    useState<Address>(EMPTY_ADDRESS);
+  const [selectedAction, setSelectedAction] = useState<Action | null>(null);
+  const [actionPeekOpen, setActionPeekOpen] = useState(false);
+
+  const openActionPeek = useCallback((action: Action) => {
+    setSelectedAction(action);
+    setActionPeekOpen(true);
+  }, []);
+
+  const closeActionPeek = useCallback(() => {
+    setActionPeekOpen(false);
+  }, []);
+
+  const openActionDetails = useCallback(() => {
+    // TODO
+    closeActionPeek();
+    navigation.navigate('Action');
+  }, [navigation, closeActionPeek]);
 
   return (
     <>
@@ -114,6 +128,11 @@ export const Home: React.FC = () => {
             ref: mapRef,
             onTouchStart: retractModal,
           }}
+          markers={sampleActions.map((a) => ({
+            key: a.id,
+            latLng: a.location.latLng,
+            onClick: () => openActionPeek(a),
+          }))}
         />
         <ColaBottomSheet
           snapPoints={['20%', '50%', '80%']}
@@ -144,6 +163,12 @@ export const Home: React.FC = () => {
           </View>
         </ColaBottomSheet>
       </View>
+      <ActionPeek
+        isOpen={actionPeekOpen}
+        onClose={closeActionPeek}
+        data={selectedAction}
+        onDetailsClick={openActionDetails}
+      />
       <Drawer />
     </>
   );
