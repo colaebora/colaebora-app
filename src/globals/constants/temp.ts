@@ -20,7 +20,7 @@ export const sampleActions: Action[] = [
     location: {
       latLng: {
         latitude: -8.05,
-        longitude: -34.900002,
+        longitude: -34.88001,
       },
       number: '2142',
       street: 'Rua do Apolo',
@@ -42,8 +42,8 @@ export const sampleActions: Action[] = [
     },
     location: {
       latLng: {
-        latitude: -8.05,
-        longitude: -34.900002,
+        latitude: -8.04,
+        longitude: -34.92952,
       },
       number: '2142',
       street: 'Rua do Apolo',
@@ -64,8 +64,8 @@ export const sampleActions: Action[] = [
     },
     location: {
       latLng: {
-        latitude: -8.05,
-        longitude: -34.900002,
+        latitude: -8.1,
+        longitude: -34.90882,
       },
       number: '2142',
       street: 'Rua do Apolo',

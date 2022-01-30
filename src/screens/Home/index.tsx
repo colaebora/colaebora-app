@@ -108,6 +108,11 @@ export const Home: React.FC = () => {
             ref: mapRef,
             onTouchStart: retractModal,
           }}
+          markers={sampleActions.map((a) => ({
+            key: a.id,
+            latLng: a.location.latLng,
+            onClick: testAlert,
+          }))}
         />
         <ColaBottomSheet
           snapPoints={['20%', '50%', '80%']}

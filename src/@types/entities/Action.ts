@@ -13,7 +13,7 @@ export type Action = {
   name: string;
   about: string;
   categories: Interest[];
-  location: Address | null;
+  location: Address;
   date: ActionDatetime | null;
   volunteersAssignedCount: number;
   volunteersNeededCount: number;
