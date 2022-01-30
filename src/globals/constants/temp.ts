@@ -1,46 +1,74 @@
-import { ActionCardData } from '@ts/Components/ActionCardData';
+import { Action } from '@ts/entities/Action';
+import { ActionFrequency } from '@ts/enums/ActionFrequency';
+import { Interest } from '@ts/enums/Interest';
 
-export const sampleActions: ActionCardData[] = [
-  {
-    id: '1',
-    imgUrl: 'https://www.katolik.pl/min_mid_big/mid/35479.jpg',
-    name: 'Ajuda a moradores de rua no Recife Antigo',
-    distanceInKm: 2,
-    volunteersNeeded: 15,
-    volunteersAssigned: 5,
-    categories: [
-      { id: 1, name: 'Causas sociais' },
-      { id: 2, name: 'Vestimenta' },
-      { id: 3, name: 'Higiene' },
-      { id: 4, name: 'Alimentação' },
-    ],
-  },
-  {
-    id: '2',
-    imgUrl:
-      'https://somos.lojaiplace.com.br/wp-content/uploads/2019/07/iStock-966783104.jpg',
-    name: 'Recreação infantil no parque',
-    distanceInKm: 2,
-    volunteersNeeded: 15,
-    volunteersAssigned: 20,
-    categories: [
-      { id: 1, name: 'Causas sociais' },
-      { id: 2, name: 'Crianças' },
-      { id: 3, name: 'Recreação' },
-    ],
-  },
+export const sampleActions: Action[] = [
   {
     id: '3',
     imgUrl:
       'https://judonyc.com/wp-content/uploads/2014/09/Uchikomi-Kbi-Judo-jake.jpg',
     name: 'Aula de judô aberta ao público',
-    distanceInKm: 2,
-    volunteersNeeded: 35,
-    volunteersAssigned: 2,
-    categories: [
-      { id: 1, name: 'Esportes' },
-      { id: 2, name: 'Educação' },
-      { id: 3, name: 'Recreação' },
-    ],
+    categories: [Interest.sports, Interest.education, Interest.children],
+    volunteersAssignedCount: 15,
+    volunteersNeededCount: 5,
+    distanceInMeters: 2000,
+    about: 'Descrição descrição descrição',
+    date: {
+      date: '2022-02-14T15:00:00.000Z',
+      frequency: ActionFrequency.once,
+    },
+    location: {
+      latLng: {
+        latitude: -8.05,
+        longitude: -34.900002,
+      },
+      number: '2142',
+      street: 'Rua do Apolo',
+    },
+  },
+  {
+    id: '2',
+    imgUrl:
+      'https://somos.lojaiplace.com.br/wp-content/uploads/2019/07/iStock-966783104.jpg',
+    name: 'Recreação voluntária para crianças',
+    categories: [Interest.education, Interest.children],
+    volunteersAssignedCount: 15,
+    volunteersNeededCount: 5,
+    distanceInMeters: 2000,
+    about: 'Descrição descrição descrição',
+    date: {
+      date: '2022-02-14T15:00:00.000Z',
+      frequency: ActionFrequency.once,
+    },
+    location: {
+      latLng: {
+        latitude: -8.05,
+        longitude: -34.900002,
+      },
+      number: '2142',
+      street: 'Rua do Apolo',
+    },
+  },
+  {
+    id: '1',
+    imgUrl: 'https://www.katolik.pl/min_mid_big/mid/35479.jpg',
+    name: 'Ajuda a moradores de rua no Recife Antigo',
+    categories: [Interest.homeless],
+    volunteersAssignedCount: 15,
+    volunteersNeededCount: 5,
+    distanceInMeters: 2000,
+    about: 'Descrição descrição descrição',
+    date: {
+      date: '2022-02-14T15:00:00.000Z',
+      frequency: ActionFrequency.once,
+    },
+    location: {
+      latLng: {
+        latitude: -8.05,
+        longitude: -34.900002,
+      },
+      number: '2142',
+      street: 'Rua do Apolo',
+    },
   },
 ];

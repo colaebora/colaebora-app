@@ -9,11 +9,13 @@ export type ActionDatetime = {
 
 export type Action = {
   id: string;
+  imgUrl: string;
   name: string;
   about: string;
   categories: Interest[];
   location: Address | null;
   date: ActionDatetime | null;
-  phone: string;
-  document: string;
+  volunteersAssignedCount: number;
+  volunteersNeededCount: number;
+  distanceInMeters: number;
 };
