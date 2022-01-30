@@ -30,6 +30,8 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'react/no-unused-prop-types': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     camelcase: 'off',
   },
 };
