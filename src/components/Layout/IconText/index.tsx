@@ -17,6 +17,6 @@ export const IconText: FC<Props> = ({
 }: Props) => (
   <View style={[styles.row, style]} {...rest}>
     {icon || <Feather name="map-pin" size={11} />}
-    <Text style={[styles.distance, textStyle]}>{children}</Text>
+    <Text style={[styles.text, textStyle]}>{children}</Text>
   </View>
 );
