@@ -15,9 +15,22 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
     backgroundColor: theme.colors.primaryBg,
   },
+  filledContainer: {
+    alignSelf: 'center',
+    marginBottom: 16,
+    position: 'relative',
+    overflow: 'hidden',
+  },
   text: {
     fontFamily: theme.fonts.text500,
     color: theme.colors.primaryText,
     marginLeft: 15,
+  },
+  editIndicator: {
+    fontFamily: theme.fonts.text400,
+    alignSelf: 'center',
+    color: theme.colors.primaryText,
+    marginTop: 12,
+    fontSize: 16,
   },
 });

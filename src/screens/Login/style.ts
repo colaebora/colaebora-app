@@ -7,10 +7,12 @@ export const styles = StyleSheet.create({
     position: 'relative',
     flexDirection: 'column-reverse',
   },
-  image: {
+  loginBgTexture: {
     position: 'absolute',
     top: 0,
     left: 0,
+    color: '#fff',
+    backgroundColor: theme.colors.primaryBg,
   },
   loginSheet: {
     height: 171,
@@ -37,5 +39,19 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: theme.fonts.title600,
     marginLeft: 8,
+  },
+  logoContainer: {
+    flex: 1,
+    paddingTop: 80,
+    paddingLeft: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: theme.colors.primaryBg,
+    shadowOpacity: 1,
+    shadowRadius: 80,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
 });
