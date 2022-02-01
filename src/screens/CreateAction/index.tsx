@@ -11,13 +11,12 @@ import { HeaderText } from '@components/Layout/HeaderText';
 import { TextField } from '@components/Fields/TextField';
 import { Formik } from 'formik';
 import { PickerField } from '@components/Fields/PickerField';
-import { TelephoneInput } from '@components/Fields/TelephoneField';
 import { INTEREST_OPTIONS } from '@constants/interests';
 import * as Yup from 'yup';
 import { AppRoutesParamList } from '@ts/routes/AppRoutes';
 import { ActionFormSchema } from '@ts/forms/ActionFormSchema';
 import { ACTION_FREQUENCIES } from '@constants/actionFrequencies';
-import { ActionBannerPicker } from '@components/Fields/ActionBannerPicker';
+import { ImagePicker } from '@components/Fields/ActionBannerPicker';
 import { PrimaryButton } from '@components/Buttons/PrimaryButton';
 import { ActionDatePicker } from '@components/Fields/ActionDatePicker';
 import { ActionDatetime } from '@ts/entities/Action';
@@ -40,8 +39,8 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
       categories: action?.categories ?? [],
       location: action?.location ?? null,
       date: action?.date ?? null,
-      phone: action?.phone ?? '',
-      document: action?.document ?? '',
+      volunteersNeededCount: action?.volunteersNeededCount ?? 5,
+      initialImgUrl: action?.imgUrl ?? null,
     }),
     [action]
   );
@@ -129,8 +128,11 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
             <HeaderText>{action ? 'Editar ação' : 'Criar uma ação'}</HeaderText>
             <View style={styles.header} />
             <View style={styles.body}>
-              {/* TODO */}
-              <ActionBannerPicker />
+              <ImagePicker
+                placeholder="Adicionar foto da ação"
+                onChange={(uri) => setFieldValue('newImgUri', uri, false)}
+                value={values.newImgUri || values.initialImgUrl}
+              />
               <TextField
                 label="Nome da ação"
                 placeholder="Digite o nome da sua ação"
@@ -177,27 +179,6 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                   setFieldValue('date', v, false);
                 }}
                 error={errors.date}
-                required
-              />
-              <TelephoneInput
-                label="Telefone"
-                keyboardType="phone-pad"
-                textContentType="telephoneNumber"
-                placeholder="Telefone do responsável pela ação"
-                maxLength={16}
-                value={values.phone}
-                onBlur={handleBlur('phone')}
-                onChange={handleChange('phone')}
-                error={errors.phone}
-                required
-              />
-              <TextField
-                label="CPF/CNPJ"
-                placeholder="Quem organiza a ação?"
-                value={values.document}
-                onBlur={handleBlur('document')}
-                onChangeText={handleChange('document')}
-                error={errors.document}
                 required
               />
               <PrimaryButton
