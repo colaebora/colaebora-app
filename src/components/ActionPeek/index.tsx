@@ -103,10 +103,18 @@ export const ActionPeek: FC<Props> = ({
             {data?.name}
           </Text>
           <View style={styles.row}>
-            <IconText icon={<Feather name="globe" />}>
+            <IconText
+              icon={
+                <Feather name="globe" color={theme.colors.gray} size={16} />
+              }
+            >
               {data?.organization.name}
             </IconText>
-            <IconText icon={<Feather name="globe" />}>
+            <IconText
+              icon={
+                <Feather name="globe" color={theme.colors.gray} size={16} />
+              }
+            >
               {data?.location.city} - {data?.location.state}
             </IconText>
           </View>

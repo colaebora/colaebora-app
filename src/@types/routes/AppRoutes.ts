@@ -5,6 +5,7 @@ export type AppRoutesParamList = {
   Home: undefined;
   Picker: PickerScreenProps;
   Organization: undefined;
+  Action: undefined;
   EditProfile: undefined;
   ActionForm: ActionFormProps;
 
