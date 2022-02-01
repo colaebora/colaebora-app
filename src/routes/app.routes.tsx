@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '@screens/Home';
-import { Action } from '@screens/Action';
+import { Organization } from '@screens/Organization';
 import { EditProfile } from '@screens/EditProfile';
 import { Picker } from '@screens/Picker';
 import { AppRoutesParamList } from '@ts/routes/AppRoutes';
@@ -21,7 +21,7 @@ export const AppRoutes: React.FC = () => (
       }}
     >
       <Screen name="Home" component={Home} />
-      <Screen name="Action" component={Action} />
+      <Screen name="Organization" component={Organization} />
       <Screen name="EditProfile" component={EditProfile} />
       <Screen name="ActionForm" component={ActionForm} />
       <Screen name="Picker" component={Picker} />

@@ -23,7 +23,7 @@ const categories = [
   { id: 4, name: 'Alimentação' },
 ];
 
-export const Action: React.FC = () => {
+export const Organization: React.FC = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>

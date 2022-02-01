@@ -4,7 +4,7 @@ import { PickerScreenProps } from './Picker';
 export type AppRoutesParamList = {
   Home: undefined;
   Picker: PickerScreenProps;
-  Action: undefined;
+  Organization: undefined;
   EditProfile: undefined;
   ActionForm: ActionFormProps;
 
