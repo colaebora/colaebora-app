@@ -1,8 +1,12 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { FC } from 'react';
+import { View, ViewStyle } from 'react-native';
 
 import { styles } from './styles';
 
-export function Divider() {
-  return <View style={[styles.container]} />;
+interface Props {
+  style?: ViewStyle;
 }
+
+export const Divider: FC<Props> = ({ style }) => (
+  <View style={[styles.container, style]} />
+);

@@ -1,18 +1,16 @@
 import { FloatingButton } from '@components/Buttons/FloatingButton';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { theme } from '@globals/styles/theme';
 
 import { ProfilePicture } from '@components/Layout/ProfilePicture';
 import { useNavigation } from '@react-navigation/native';
 import { IconText } from '@components/Layout/IconText';
 import { globalStyles } from '@globals/styles/global';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { CategoryBubble } from '@components/Layout/CategoryBubble';
 import { Divider } from '@components/Layout/Divider';
-import { sampleActions } from '@globals/constants/temp';
-import { ActionCard } from '@components/Layout/ActionCard';
 import { ColaMapBanner } from '@components/Maps/ColaMapBanner';
 import { styles } from './style';
 
@@ -33,36 +31,86 @@ export const Action: React.FC = () => {
         )}
         onPress={() => navigation.goBack()}
       />
-      <FloatingButton
-        right
-        Icon={() => (
-          <Feather
-            name="message-circle"
-            size={24}
-            color={theme.colors.primary}
-          />
-        )}
-      />
       <View style={styles.header}>
-        <ProfilePicture
-          source={{ uri: 'https://www.katolik.pl/min_mid_big/mid/35479.jpg' }}
-        />
-        <Text style={styles.name}>Saber Viver</Text>
+        <View style={styles.profilePicture}>
+          <ProfilePicture
+            source={{ uri: 'https://www.katolik.pl/min_mid_big/mid/35479.jpg' }}
+          />
+        </View>
+        <Text style={styles.name}>Ajudar comunidade carente</Text>
         <View style={styles.row}>
-          <IconText>Recife - PE</IconText>
-          <View style={styles.row}>
-            <AntDesign name="star" color="#E8EB36" size={11} />
-            <Text style={{ marginLeft: 4 }}>4.3</Text>
+          <View style={[styles.row, { marginTop: 4 }]}>
+            <IconText
+              onTouchEndCapture={() => navigation.navigate('Organization')}
+              icon={
+                <Feather name="globe" color={theme.colors.gray} size={16} />
+              }
+            >
+              Saber viver
+            </IconText>
+            <IconText
+              icon={
+                <Feather name="globe" color={theme.colors.gray} size={16} />
+              }
+            >
+              Recife - PE
+            </IconText>
           </View>
         </View>
+        <Text style={styles.assigneeCount}>
+          5 pessoas estão participando dessa ação
+        </Text>
+        <TouchableOpacity style={styles.joinButton}>
+          <Text style={styles.joinButtonText}>Participar da ação</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.body}>
-        <Text style={globalStyles.title}>Sobre o Grupo</Text>
+        <Text style={globalStyles.title}>Descrição</Text>
         <Text style={globalStyles.text}>
-          É uma instituição privada sem fins lucrativos, fundada em 1983,
-          situada na Ilha de Deus no Recife. Estamos em uma comunidade muito
-          pobre onde a maioria dos moradores são pescadores.
+          Ação social com o intuito de arrecadar fundos e distribuir alimentos
+          para famílias carentes impactadas pelo COVID-19. Pensando nisso, nós
+          decidimos iniciar uma Ação social para arrecadar fundos e distribuir
+          alimentos para essas famílias carentes na cidade de Recife.
         </Text>
+
+        <Text style={[globalStyles.title, { marginTop: 16 }]}>
+          Informações da ação
+        </Text>
+        <View style={styles.actionInfo}>
+          <IconText
+            icon={
+              <Feather name="calendar" color={theme.colors.primary} size={16} />
+            }
+          >
+            13 de novembro de 2022
+          </IconText>
+          <Divider style={styles.actionInfoDivider} />
+          <IconText
+            icon={
+              <Feather name="clock" color={theme.colors.primary} size={16} />
+            }
+          >
+            15:00
+          </IconText>
+          <Divider style={styles.actionInfoDivider} />
+          <IconText
+            icon={
+              <Feather name="map-pin" color={theme.colors.primary} size={16} />
+            }
+          >
+            Rua São Paulo, 96, 51190-460, Recife - PE
+          </IconText>
+          <Divider style={styles.actionInfoDivider} />
+          <IconText
+            icon={
+              <Feather name="phone" color={theme.colors.primary} size={16} />
+            }
+          >
+            (81) 98888-8888
+          </IconText>
+          <Divider style={styles.actionInfoDivider} />
+        </View>
+
         <ScrollView horizontal>
           {categories.map((category, index) => (
             <CategoryBubble
@@ -80,18 +128,6 @@ export const Action: React.FC = () => {
           latLng={{ lat: 37.78825, lng: -122.4324 }}
           text="Rua São Paulo, 96, 51190-460, Recife - PE"
         />
-        <Divider />
-        <Text style={globalStyles.title}>Ações desenvolvidas</Text>
-        <View>
-          {sampleActions.map((item) => (
-            <ActionCard
-              style={{ marginVertical: 7 }}
-              past
-              data={item}
-              key={item.id}
-            />
-          ))}
-        </View>
       </View>
     </ScrollView>
   );

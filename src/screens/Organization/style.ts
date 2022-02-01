@@ -1,6 +1,5 @@
 import { theme } from '@globals/styles/theme';
 import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,15 +7,12 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
+    height: 258,
     backgroundColor: theme.colors.primaryBgMiddle,
     flexDirection: 'column',
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: getStatusBarHeight() + 32,
-    paddingHorizontal: 36,
-  },
-  profilePicture: {
-    alignSelf: 'center',
+    paddingTop: 24,
   },
   name: {
     fontFamily: theme.fonts.title600,
@@ -38,29 +34,5 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  assigneeCount: {
-    fontFamily: theme.fonts.text500,
-    color: theme.colors.primaryText,
-    textAlign: 'center',
-    marginTop: 16,
-    marginBottom: 16,
-  },
-  joinButton: {
-    backgroundColor: theme.colors.primary,
-    paddingVertical: 12,
-    marginBottom: 16,
-    borderRadius: 8,
-  },
-  joinButtonText: {
-    fontFamily: theme.fonts.text500,
-    color: '#fff',
-    textAlign: 'center',
-  },
-  actionInfo: {
-    marginTop: 12,
-  },
-  actionInfoDivider: {
-    marginVertical: 18,
   },
 });
