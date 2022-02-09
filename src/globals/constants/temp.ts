@@ -1,4 +1,5 @@
 import { Action } from '@ts/entities/Action';
+import { User } from '@ts/entities/User';
 import { ActionFrequency } from '@ts/enums/ActionFrequency';
 import { Interest } from '@ts/enums/Interest';
 
@@ -86,5 +87,32 @@ export const sampleActions: Action[] = [
     organization: {
       name: 'Saber Viver',
     },
+  },
+];
+
+export const sampleUsers: Partial<User & { actionName: string }>[] = [
+  {
+    name: 'Marlon Santos',
+    photo:
+      'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
+    actionName: 'Aalkfjaskdfas',
+  },
+  {
+    name: 'Catarina Maida',
+    photo:
+      'https://images.unsplash.com/photo-1592621385612-4d7129426394?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+    actionName: 'Aalkfjaskdfas',
+  },
+  {
+    name: 'Juliana Melo',
+    photo:
+      'https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+    actionName: 'Aalkfjaskdfas',
+  },
+  {
+    name: 'Fabrício Tavares',
+    photo:
+      'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    actionName: 'Aalkfjaskdfas',
   },
 ];

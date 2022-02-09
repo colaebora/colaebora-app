@@ -8,6 +8,7 @@ export type AppRoutesParamList = {
   Action: undefined;
   EditProfile: undefined;
   MyActions: undefined;
+  PendingApprovals: undefined;
   ActionForm: ActionFormProps;
 
   AddressWizardPartOne: undefined;

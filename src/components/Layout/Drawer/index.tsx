@@ -80,6 +80,19 @@ export const Drawer: FC = () => {
             onTouchStart={() => navigation.navigate('MyActions')}
           />
         )}
+        {isLoggedIn && (
+          <DrawerListItem
+            icon={
+              <Feather
+                name="user-check"
+                color={theme.colors.primary}
+                size={24}
+              />
+            }
+            title="Aprovações pendentes"
+            onTouchStart={() => navigation.navigate('PendingApprovals')}
+          />
+        )}
         <DrawerListItem
           icon={
             <Feather name="settings" color={theme.colors.primary} size={24} />
