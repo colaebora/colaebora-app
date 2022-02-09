@@ -11,6 +11,7 @@ import { AddressWizardPartOne } from '@screens/AddressWizard/Part1';
 import { AddressWizardPartTwo } from '@screens/AddressWizard/Part2';
 import { AddressWizardPartThree } from '@screens/AddressWizard/Part3';
 import { Action } from '@screens/Action';
+import { MyActions } from '@screens/MyActions';
 
 const { Navigator, Screen } = createStackNavigator<AppRoutesParamList>();
 
@@ -27,6 +28,7 @@ export const AppRoutes: React.FC = () => (
       <Screen name="EditProfile" component={EditProfile} />
       <Screen name="ActionForm" component={ActionForm} />
       <Screen name="Picker" component={Picker} />
+      <Screen name="MyActions" component={MyActions} />
 
       <Screen name="AddressWizardPartOne" component={AddressWizardPartOne} />
       <Screen name="AddressWizardPartTwo" component={AddressWizardPartTwo} />

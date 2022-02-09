@@ -20,4 +20,6 @@ export type Action = {
   volunteersNeededCount: number;
   distanceInMeters: number;
   organization: Partial<Organization>;
+  // This is temp
+  canceled?: boolean | string;
 };

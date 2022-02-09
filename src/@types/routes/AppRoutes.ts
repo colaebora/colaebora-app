@@ -7,6 +7,7 @@ export type AppRoutesParamList = {
   Organization: undefined;
   Action: undefined;
   EditProfile: undefined;
+  MyActions: undefined;
   ActionForm: ActionFormProps;
 
   AddressWizardPartOne: undefined;

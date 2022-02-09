@@ -12,6 +12,7 @@ import Animated, {
 import { Feather } from '@expo/vector-icons';
 import { theme } from '@globals/styles/theme';
 import { useAuth } from '@hooks/useAuth';
+import { useNavigation } from '@react-navigation/native';
 import { styles } from './style';
 import { DrawerHeader } from './DrawerHeader';
 import { DrawerListItem } from './DrawerListItem';
@@ -19,6 +20,7 @@ import { DrawerListItem } from './DrawerListItem';
 const { width } = Dimensions.get('window');
 
 export const Drawer: FC = () => {
+  const navigation = useNavigation();
   const { isLoggedIn, logout } = useAuth();
   const { isOpen, close } = useDrawer();
 
@@ -75,6 +77,7 @@ export const Drawer: FC = () => {
               <Feather name="user" color={theme.colors.primary} size={24} />
             }
             title="Suas ações"
+            onTouchStart={() => navigation.navigate('MyActions')}
           />
         )}
         <DrawerListItem
