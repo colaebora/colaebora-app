@@ -12,4 +12,5 @@ export type User = {
   address: Address;
   gender: Gender;
   interests: Interest[];
+  role: 'user' | 'org';
 };

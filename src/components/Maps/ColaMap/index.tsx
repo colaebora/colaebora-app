@@ -5,6 +5,7 @@ import MapView, { MapViewProps, Marker } from 'react-native-maps';
 import { LatLng } from '@ts/entities/LatLng';
 import { NO_OP } from '@globals/utils/noOp';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { theme } from '@globals/styles/theme';
 import { styles, webContainerStyle } from './style';
 
 interface GenericMarker {
@@ -20,11 +21,16 @@ interface ColaMapProps {
   children?: ReactNode;
 }
 
-const MARKER_COLORS: string[] = ['#EC1C24', '#FF7811', '#00A94A'];
+const MARKER_COLORS: string[] = [
+  '#EC1C24',
+  '#FF7811',
+  '#00A94A',
+  theme.colors.primary,
+];
 
 function getRandomMarkerColorBySeed(seed: string) {
   // TODO
-  const color = MARKER_COLORS[parseInt(seed, 10) - 1];
+  const color = MARKER_COLORS[parseInt(seed, 10) % 4];
   return color;
 }
 

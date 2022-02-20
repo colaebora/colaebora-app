@@ -17,6 +17,7 @@ type AuthContextData = {
   enterAsGuest: () => void;
   logout: () => void;
   handleGoogleLogin: () => Promise<boolean>;
+  handleOrgLogin: () => Promise<boolean>;
   user: User | null;
 };
 
@@ -42,15 +43,34 @@ export const AuthProvider: FC = ({ children }) => {
   const handleGoogleLogin = useCallback(async (): Promise<boolean> => {
     const mockUser: User = {
       id: 1,
-      name: 'José Henrique Leão',
-      photo: 'https://github.com/jhleao.png',
-      email: 'jhleao99@gmail.com',
+      name: 'Marlon Santos',
+      photo:
+        'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
+      email: 'marlon.santos87@gmail.com',
       gender: Gender.male,
       interests: [Interest.animals, Interest.ecology],
       phone: '81940028922',
-      bio: 'o lobo uiva e o urso panda',
+      bio: 'Engenheiro civil, pai e louco por cachorros',
+      role: 'user',
     };
     setUser(mockUser);
+    return true;
+  }, []);
+
+  const handleOrgLogin = useCallback(async (): Promise<boolean> => {
+    const mockOrg: User = {
+      id: 1,
+      name: 'Saber Viver',
+      photo:
+        'http://mundocarreira.com.br/wp-content/uploads/2018/03/1-colaboracao.jpg',
+      email: 'saverviverrecife@gmail.com',
+      gender: Gender.male,
+      interests: [Interest.animals, Interest.ecology],
+      phone: '81940028922',
+      bio: 'É uma instituição privada sem fins lucrativos, fundada em 1983, situada na Ilha de Deus no Recife. Estamos em uma comunidade muito pobre onde a maioria dos moradores são pescadores.',
+      role: 'org',
+    };
+    setUser(mockOrg);
     return true;
   }, []);
 
@@ -62,6 +82,7 @@ export const AuthProvider: FC = ({ children }) => {
     logout,
     user,
     handleGoogleLogin,
+    handleOrgLogin,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

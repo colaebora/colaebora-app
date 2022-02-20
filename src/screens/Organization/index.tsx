@@ -45,7 +45,9 @@ export const Organization: React.FC = () => {
       />
       <View style={styles.header}>
         <ProfilePicture
-          source={{ uri: 'https://www.katolik.pl/min_mid_big/mid/35479.jpg' }}
+          source={{
+            uri: 'http://mundocarreira.com.br/wp-content/uploads/2018/03/1-colaboracao.jpg  ',
+          }}
         />
         <Text style={styles.name}>Saber Viver</Text>
         <View style={styles.row}>

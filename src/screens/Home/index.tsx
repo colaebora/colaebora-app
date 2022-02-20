@@ -74,11 +74,14 @@ export const Home: React.FC = () => {
     setActionPeekOpen(false);
   }, []);
 
-  const openActionDetails = useCallback(() => {
-    // TODO
-    closeActionPeek();
-    navigation.navigate('Action');
-  }, [navigation, closeActionPeek]);
+  const openActionDetails = useCallback(
+    (action: Action) => {
+      // TODO
+      closeActionPeek();
+      navigation.navigate('Action', { action });
+    },
+    [navigation, closeActionPeek]
+  );
 
   return (
     <>
@@ -157,7 +160,10 @@ export const Home: React.FC = () => {
               contentContainerStyle={{ paddingVertical: 24 }}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <ActionCard data={item} onTouchEndCapture={openAction} />
+                <ActionCard
+                  data={item}
+                  onTouchEndCapture={() => openActionDetails(item)}
+                />
               )}
             />
           </View>

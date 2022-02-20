@@ -16,6 +16,7 @@ import { theme } from '@globals/styles/theme';
 import { IconText } from '@components/Layout/IconText';
 import { globalStyles } from '@globals/styles/global';
 import { LimitedText } from '@components/Layout/LimitedText';
+import { NO_OP } from '@globals/utils/noOp';
 import { styles } from './style';
 
 const { height } = Dimensions.get('window');
@@ -24,7 +25,7 @@ interface Props {
   isOpen: boolean;
   data?: Action | null;
   onClose?: () => void;
-  onDetailsClick?: () => void;
+  onDetailsClick?: (data: Action) => void;
 }
 
 export const ActionPeek: FC<Props> = ({
@@ -36,7 +37,7 @@ export const ActionPeek: FC<Props> = ({
   const PICTURE_HEIGHT_OFFSET = useMemo(() => 70, []);
   const MAX_DRAWER_HEIGHT = useMemo(() => height * 0.4, []);
   const DRAWER_HIDDEN_Y_VALUE = useMemo(
-    () => MAX_DRAWER_HEIGHT + PICTURE_HEIGHT_OFFSET,
+    () => MAX_DRAWER_HEIGHT + PICTURE_HEIGHT_OFFSET + 100,
     [MAX_DRAWER_HEIGHT, PICTURE_HEIGHT_OFFSET]
   );
   const drawerPosY = useSharedValue(DRAWER_HIDDEN_Y_VALUE);
@@ -52,12 +53,12 @@ export const ActionPeek: FC<Props> = ({
   useEffect(() => {
     if (isOpen) {
       drawerPosY.value = withTiming(0, {
-        duration: 500,
+        duration: 650,
         easing: Easing.out(Easing.exp),
       });
     } else {
       drawerPosY.value = withTiming(DRAWER_HIDDEN_Y_VALUE, {
-        duration: 500,
+        duration: 650,
         easing: Easing.out(Easing.exp),
       });
     }
@@ -124,7 +125,9 @@ export const ActionPeek: FC<Props> = ({
           <LimitedText
             style={globalStyles.text}
             limit={100}
-            onReadMore={onDetailsClick}
+            onReadMore={
+              onDetailsClick ? () => onDetailsClick(data as Action) : NO_OP
+            }
             forceReadMore
           >
             {data?.about ?? ''}

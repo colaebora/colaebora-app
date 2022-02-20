@@ -22,4 +22,5 @@ export type Action = {
   organization: Partial<Organization>;
   // This is temp
   canceled?: boolean | string;
+  phone?: string;
 };

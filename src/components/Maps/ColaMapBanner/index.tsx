@@ -5,6 +5,7 @@ import MapView, { MapViewProps } from 'react-native-maps';
 import { IconText } from '@components/Layout/IconText';
 import { ShortLatLng } from '@ts/entities/LatLng';
 import { Feather } from '@expo/vector-icons';
+import { getMapZoom } from '@globals/utils/getMapZoom';
 import { styles, webContainerStyle } from './style';
 
 interface ColaMapBannerProps {
@@ -41,8 +42,8 @@ export const ColaMapBanner: React.FC<ColaMapBannerProps> = ({
     initialRegion: {
       latitude: latLng.lat,
       longitude: latLng.lng,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
+      latitudeDelta: getMapZoom(0.005).latitudeDelta,
+      longitudeDelta: getMapZoom(0.005).latitudeDelta,
     },
     ...mobile,
   };

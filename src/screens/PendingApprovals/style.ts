@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     paddingRight: 16,
     borderRadius: 8,
     marginBottom: 12,
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.07,
     shadowRadius: 10,
     shadowOffset: {
       width: 0,

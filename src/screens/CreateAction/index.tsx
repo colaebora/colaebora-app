@@ -19,8 +19,9 @@ import { ACTION_FREQUENCIES } from '@constants/actionFrequencies';
 import { ImagePicker } from '@components/Fields/ActionBannerPicker';
 import { PrimaryButton } from '@components/Buttons/PrimaryButton';
 import { ActionDatePicker } from '@components/Fields/ActionDatePicker';
-import { ActionDatetime } from '@ts/entities/Action';
+import { Action, ActionDatetime } from '@ts/entities/Action';
 import { AddressField } from '@components/Fields/AddressField';
+import { sampleActions } from '@globals/constants/temp';
 import { styles } from './style';
 
 type Props = StackScreenProps<AppRoutesParamList, 'ActionForm'>;
@@ -89,15 +90,28 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
     ),
   });
 
-  const handleFinish = useCallback((data: ActionFormSchema) => {
-    Alert.alert(JSON.stringify(data, null, 2));
-  }, []);
+  const handleFinish = useCallback(
+    (data: ActionFormSchema) => {
+      const newAction: Action = {
+        ...data,
+        id: Math.random().toString(),
+        imgUrl: data.newImgUri || '',
+        organization: { name: 'Saber Viver' },
+        distanceInMeters: 3000,
+        volunteersAssignedCount: 0,
+        location: { ...data.location, state: 'PE', city: 'Recife' },
+      };
+      sampleActions.unshift(newAction);
+      navigation.goBack();
+    },
+    [navigation]
+  );
 
   return (
     <Formik
       formik
       onSubmit={handleFinish}
-      validationSchema={actionFormSchema}
+      // validationSchema={actionFormSchema}
       initialValues={initialValues}
     >
       {({
@@ -139,7 +153,7 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                 value={values.name}
                 onBlur={handleBlur('name')}
                 onChangeText={handleChange('name')}
-                error={errors.name}
+                // error={errors.name}
                 required
               />
               <TextField
@@ -148,7 +162,7 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                 value={values.about}
                 onBlur={handleBlur('about')}
                 onChangeText={handleChange('about')}
-                error={errors.about}
+                // error={errors.about}
                 required
               />
               <PickerField
@@ -159,7 +173,7 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                 onChange={(v: string[]) =>
                   setFieldValue('categories', v, false)
                 }
-                error={errors.categories as string}
+                // error={errors.categories as string}
                 required
                 multiple
               />
@@ -169,7 +183,7 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                 value={values.location}
                 onChange={(a) => setFieldValue('location', a, false)}
                 required
-                error={errors.location}
+                // error={errors.location}
               />
               <ActionDatePicker
                 label="Dia da ação"
@@ -178,7 +192,7 @@ export const ActionForm: React.FC<Props> = ({ route }) => {
                 onChange={(v: ActionDatetime) => {
                   setFieldValue('date', v, false);
                 }}
-                error={errors.date}
+                // error={errors.date}
                 required
               />
               <PrimaryButton

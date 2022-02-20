@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { ActivityIndicator, Image, Text, View } from 'react-native';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { theme } from '@globals/styles/theme';
 
@@ -10,9 +10,26 @@ import { PrimaryButton } from '@components/Buttons/PrimaryButton';
 import { styles } from './style';
 
 export const Login: React.FC = () => {
-  const { enterAsGuest, handleGoogleLogin } = useAuth();
+  const { enterAsGuest, handleGoogleLogin, handleOrgLogin } = useAuth();
 
   const handleSkipLogin = () => enterAsGuest();
+
+  const [loading, setloading] = useState(false);
+
+  const sleep = useCallback(
+    async (ms) => new Promise((r) => setTimeout(() => r(''), ms)),
+    []
+  );
+
+  const handleLogin = useCallback(
+    async (type: 'user' | 'org') => {
+      setloading(true);
+      await sleep(1000);
+      if (type === 'user') handleGoogleLogin();
+      else handleOrgLogin();
+    },
+    [handleGoogleLogin, handleOrgLogin, sleep]
+  );
 
   return (
     <View style={styles.container}>
@@ -26,10 +43,23 @@ export const Login: React.FC = () => {
       <View style={styles.loginSheet}>
         <PrimaryButton
           text="Entrar com o Google"
-          Icon={() => <AntDesign name="google" color="white" size={16} />}
-          onPress={handleGoogleLogin}
+          Icon={() =>
+            loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <AntDesign name="google" color="white" size={16} />
+            )
+          }
+          onPress={() => handleLogin('org')}
+          styles={{
+            container: {
+              backgroundColor: loading
+                ? theme.colors.primaryBgDark
+                : theme.colors.primary,
+            },
+          }}
         />
-        <View style={styles.skipLogin} onTouchEnd={handleSkipLogin}>
+        <View style={styles.skipLogin} onTouchEnd={() => handleLogin('user')}>
           <Feather name="log-in" color={theme.colors.primary} size={24} />
           <Text style={styles.skipLoginText}>Entrar como visitante</Text>
         </View>

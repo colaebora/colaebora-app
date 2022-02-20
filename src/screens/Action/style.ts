@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     marginVertical: 4,
+    width: '100%',
   },
   row: {
     flexDirection: 'row',
@@ -62,5 +63,17 @@ export const styles = StyleSheet.create({
   },
   actionInfoDivider: {
     marginVertical: 18,
+  },
+  leaveButton: {
+    backgroundColor: '#EA514E',
+    paddingVertical: 10,
+    borderRadius: 8,
+    width: '100%',
+    justifyContent: 'center',
+  },
+  leaveButtonText: {
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: theme.fonts.text500,
   },
 });

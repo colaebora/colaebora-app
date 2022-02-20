@@ -16,8 +16,14 @@ import { styles } from './style';
 export const MyActions: React.FC = () => {
   const navigation = useNavigation();
 
-  const [current, setCurrent] = useState(sampleActions);
-  const [past, setPast] = useState(sampleActions);
+  const delete_me = ['1', '2', '3', '4'];
+
+  const [current, setCurrent] = useState(
+    sampleActions.filter((e) => !delete_me.includes(e.id))
+  );
+  const [past, setPast] = useState(
+    sampleActions.filter((e) => delete_me.includes(e.id))
+  );
 
   // This is a quick hack job, rewrite this later
   const cancel = useCallback((action: Action) => {
@@ -67,6 +73,7 @@ export const MyActions: React.FC = () => {
         <Text style={globalStyles.title}>Presentes</Text>
         {current.map((a) => (
           <ActionCard
+            key={a.id}
             data={a}
             style={{ marginBottom: 12 }}
             editable
@@ -75,7 +82,7 @@ export const MyActions: React.FC = () => {
         ))}
         <Text style={[globalStyles.title, { marginTop: 18 }]}>Anteriores</Text>
         {past.map((a) => (
-          <ActionCard data={a} past />
+          <ActionCard key={a.id} data={a} past style={{ marginBottom: 12 }} />
         ))}
       </View>
     </ScrollView>
