@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, Image, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { theme } from '@globals/styles/theme';
 
@@ -50,7 +50,7 @@ export const Login: React.FC = () => {
               <AntDesign name="google" color="white" size={16} />
             )
           }
-          onPress={() => handleLogin('org')}
+          onPress={() => handleLogin('user')}
           styles={{
             container: {
               backgroundColor: loading
@@ -59,7 +59,7 @@ export const Login: React.FC = () => {
             },
           }}
         />
-        <View style={styles.skipLogin} onTouchEnd={() => handleLogin('user')}>
+        <View style={styles.skipLogin} onTouchEnd={() => handleLogin('org')}>
           <Feather name="log-in" color={theme.colors.primary} size={24} />
           <Text style={styles.skipLoginText}>Entrar como visitante</Text>
         </View>

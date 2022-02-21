@@ -25,6 +25,8 @@ export const useAddressWizard = (): AddressWizardData =>
 export const EMPTY_ADDRESS = {
   street: '',
   number: '',
+  city: '',
+  state: '',
   latLng: {
     latitude: 37.78825,
     longitude: -122.4324,
