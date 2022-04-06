@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-
 import { useAuth } from '@hooks/useAuth';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { FC } from 'react';
 import { AppRoutes } from './app.routes';
 import { LoginRoutes } from './login.routes';
 
