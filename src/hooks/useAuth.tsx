@@ -1,6 +1,8 @@
+import { AuthService } from '@services/auth.service';
 import { User } from '@ts/entities/User';
 import { Gender } from '@ts/enums/Gender';
 import { Interest } from '@ts/enums/Interest';
+import * as AppAuth from 'expo-app-auth';
 import React, {
   createContext,
   FC,
@@ -10,10 +12,10 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Alert, AsyncStorage, Platform } from 'react-native';
-import * as AppAuth from 'expo-app-auth';
-import { AuthService } from '@services/auth.service';
+import { AsyncStorage } from 'react-native';
 import { EMPTY_ADDRESS } from './useAddressWIzard';
+
+export type registeredType = 'isRegistered' | 'isNotRegistered';
 
 type AuthContextData = {
   isGuest: boolean;
@@ -22,8 +24,10 @@ type AuthContextData = {
   enterAsGuest: () => void;
   logout: () => void;
   handleGoogleLogin: () => Promise<void>;
-  handleOrgLogin: () => Promise<boolean>;
+  handleOrgLogin?: () => Promise<boolean>;
   user: User | null;
+  registered: registeredType | null;
+  googleToken: string | null;
 };
 
 const MOCK_USER: User = {
@@ -56,11 +60,12 @@ const MOCK_ORG: User = {
 
 const CONFIG = {
   issuer: 'https://accounts.google.com',
-  scopes: ['openid', 'profile'],
+  scopes: ['openid', 'profile', 'email'],
   clientId:
-    (Platform.OS === 'ios'
-      ? process.env.GOOGLE_OAUTH_IOS_CLIENTID
-      : process.env.GOOGLE_OAUTH_ANROIDD_CLIENTID) ?? '',
+    '613674537010-ivmeahrd1g3l78gtckt9h7d093bog5ge.apps.googleusercontent.com',
+  // (Platform.OS === 'ios'
+  //   ? process.env.GOOGLE_OAUTH_IOS_CLIENTID
+  //   : process.env.GOOGLE_OAUTH_ANROIDD_CLIENTID) ?? '',
 };
 
 const AuthContext = createContext({} as AuthContextData);
@@ -75,7 +80,8 @@ export const AuthProvider: FC = ({ children }) => {
     () => isLoggedIn || isGuest,
     [isLoggedIn, isGuest]
   );
-
+  const [registered, setRegistered] = useState<registeredType | null>(null);
+  const [googleToken, setGoogleToken] = useState<string | null>(null);
   const enterAsGuest = useCallback(() => setIsGuest(true), []);
   const logout = useCallback(() => {
     if (isGuest) setIsGuest(false);
@@ -96,6 +102,14 @@ export const AuthProvider: FC = ({ children }) => {
     const colaResponse = await AuthService.googleLogin(
       authState.idToken as string
     );
+    if (colaResponse?.status === 404) {
+      setRegistered('isNotRegistered');
+      setGoogleToken(authState.idToken);
+    }
+    if (colaResponse?.status === 200) {
+      setRegistered('isRegistered');
+    }
+    return colaResponse;
   }, [cacheAuthAsync]);
 
   const checkIfTokenExpired = useCallback(
@@ -149,13 +163,13 @@ export const AuthProvider: FC = ({ children }) => {
   }, []);
 
   const handleGoogleLogin = useCallback(async (): Promise<void> => {
-    const _authState = await signInAsync();
+    await signInAsync();
   }, [signInAsync]);
 
-  const handleOrgLogin = useCallback(async (): Promise<boolean> => {
-    setUser(MOCK_ORG);
-    return true;
-  }, []);
+  // const handleOrgLogin = useCallback(async (): Promise<boolean> => {
+  //   setUser(MOCK_ORG);
+  //   return true;
+  // }, []);
 
   const data: AuthContextData = {
     isGuest,
@@ -165,7 +179,9 @@ export const AuthProvider: FC = ({ children }) => {
     logout,
     user,
     handleGoogleLogin,
-    handleOrgLogin,
+    // handleOrgLogin,
+    registered,
+    googleToken,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

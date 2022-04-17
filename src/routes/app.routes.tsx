@@ -1,18 +1,17 @@
-import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import { Home } from '@screens/Home';
-import { Organization } from '@screens/Organization';
-import { EditProfile } from '@screens/EditProfile';
-import { Picker } from '@screens/Picker';
-import { AppRoutesParamList } from '@ts/routes/AppRoutes';
-import { ActionForm } from '@screens/CreateAction';
+import { Action } from '@screens/Action';
 import { AddressWizardPartOne } from '@screens/AddressWizard/Part1';
 import { AddressWizardPartTwo } from '@screens/AddressWizard/Part2';
 import { AddressWizardPartThree } from '@screens/AddressWizard/Part3';
-import { Action } from '@screens/Action';
+import { ActionForm } from '@screens/CreateAction';
+import { EditProfile } from '@screens/EditProfile';
+import { Home } from '@screens/Home';
 import { MyActions } from '@screens/MyActions';
+import { Organization } from '@screens/Organization';
 import { PendingApprovals } from '@screens/PendingApprovals';
+import { Picker } from '@screens/Picker';
+import { AppRoutesParamList } from '@ts/routes/AppRoutes';
+import React from 'react';
 
 const { Navigator, Screen } = createStackNavigator<AppRoutesParamList>();
 

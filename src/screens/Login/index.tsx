@@ -1,20 +1,26 @@
-import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
-import { AntDesign, Feather } from '@expo/vector-icons';
-import { theme } from '@globals/styles/theme';
-
 import LoginBgTexture from '@assets/login-bg-texture.svg';
 import LoginLogo from '@assets/login-logo.svg';
-import { useAuth } from '@hooks/useAuth';
 import { PrimaryButton } from '@components/Buttons/PrimaryButton';
+import { AntDesign, Feather } from '@expo/vector-icons';
+import { theme } from '@globals/styles/theme';
+import { useAuth } from '@hooks/useAuth';
+import { useNavigation } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { styles } from './style';
-
 export const Login: React.FC = () => {
-  const { enterAsGuest, handleGoogleLogin, handleOrgLogin } = useAuth();
+  const {
+    enterAsGuest,
+    handleGoogleLogin,
+    handleOrgLogin,
+    registered,
+    googleToken,
+  } = useAuth();
 
+  const navigation = useNavigation();
   const handleSkipLogin = () => enterAsGuest();
 
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const sleep = useCallback(
     async (ms) => new Promise((r) => setTimeout(() => r(''), ms)),
@@ -23,14 +29,22 @@ export const Login: React.FC = () => {
 
   const handleLogin = useCallback(
     async (type: 'user' | 'org') => {
-      setloading(true);
+      setLoading(true);
       await sleep(1000);
       if (type === 'user') handleGoogleLogin();
-      else handleOrgLogin();
+      else null;
     },
     [handleGoogleLogin, handleOrgLogin, sleep]
   );
-
+  const token = googleToken;
+  useEffect(() => {
+    if (registered === 'isRegistered') {
+      navigation.navigate('Home');
+    }
+    if (registered === 'isNotRegistered') {
+      navigation.navigate('RegisterScreen');
+    }
+  }, [registered, token]);
   return (
     <View style={styles.container}>
       <LoginBgTexture
