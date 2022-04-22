@@ -1,56 +1,57 @@
-{
-  "expo": {
-    "name": "Cola&Bora",
-    "slug": "colaebora",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "entryPoint": "./src/App.tsx",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": ""
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "config": {
-        "googleMaps": {
-          "apiKey": ""
-        }
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": [
-        "expo.ts",
-        "expo.tsx",
-        "expo.js",
-        "expo.jsx",
-        "ts",
-        "tsx",
-        "js",
-        "jsx",
-        "json",
-        "svg"
-      ]
-    }
-  }
-}
+// {
+//   "expo": {
+//     "name": "Cola&Bora",
+//     "slug": "colaebora",
+//     "scheme": "colaebora",
+//     "version": "1.0.0",
+//     "orientation": "portrait",
+//     "icon": "./assets/icon.png",
+//     "entryPoint": "./src/App.tsx",
+//     "splash": {
+//       "image": "./assets/splash.png",
+//       "resizeMode": "contain",
+//       "backgroundColor": "#ffffff"
+//     },
+//     "updates": {
+//       "fallbackToCacheTimeout": 0
+//     },
+//     "assetBundlePatterns": [
+//       "**/*"
+//     ],
+//     "ios": {
+//       "supportsTablet": true,
+//       "config": {
+//         "googleMapsApiKey": ""
+//       }
+//     },
+//     "android": {
+//       "adaptiveIcon": {
+//         "foregroundImage": "./assets/adaptive-icon.png",
+//         "backgroundColor": "#FFFFFF"
+//       },
+//       "config": {
+//         "googleMaps": {
+//           "apiKey": ""
+//         }
+//       }
+//     },
+//     "web": {
+//       "favicon": "./assets/favicon.png"
+//     },
+//     "packagerOpts": {
+//       "config": "metro.config.js",
+//       "sourceExts": [
+//         "expo.ts",
+//         "expo.tsx",
+//         "expo.js",
+//         "expo.jsx",
+//         "ts",
+//         "tsx",
+//         "js",
+//         "jsx",
+//         "json",
+//         "svg"
+//       ]
+//     }
+//   }
+// }
